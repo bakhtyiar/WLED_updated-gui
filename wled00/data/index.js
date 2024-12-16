@@ -1946,8 +1946,12 @@ function selSegEx(s) {
     requestJson(obj);
 }
 
+function getSelSeg(s) {
+    return gId(`seg${s}sel`);
+}
+
 function selSeg(s) {
-    var sel = gId(`seg${s}sel`).checked;
+    var sel = getSelSeg(s).checked;
     var obj = {"seg": {"id": s, "sel": sel}};
     requestJson(obj);
 }
@@ -2050,6 +2054,13 @@ function setSeg(s) {
     }
     resetUtil(); // close add segment dialog just in case
     requestJson(obj);
+    for (let i = 0; i < s; i++) {
+        const selectItem = getSelSeg(i);
+        if (selectItem.checked) {
+            selectItem.checked = !selectItem.checked;
+            selSeg(i);
+        }
+    }
 }
 
 function delSeg(s) {
