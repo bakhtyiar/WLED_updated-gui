@@ -56,7 +56,7 @@
 				// error event
 				scE.addEventListener("error", (ev) => {
 					console.log("Error on loading file", ev);
-					alert("Loading of configuration script failed.\nIncomplete page data!");
+					alert("Ошибка загрузки скрипта настроек.\nНеполные данные страницы!");
 				});
 			}
 			var timeout;
@@ -147,8 +147,8 @@
 					return false;
 				} // Prevent form submission and contact with server
 				if (bquot > 100) {
-					var msg = "Too many LEDs for me to handle!";
-					if (maxM < 10000) msg += "\n\rConsider using an ESP32.";
+					var msg = "Слишком много LED лент!";
+					if (maxM < 10000) msg += "\n\rРассмотрите платформу ESP32.";
 					alert(msg);
 				}
 				if (d.Sf.checkValidity()) d.Sf.submit(); //https://stackoverflow.com/q/37323914
@@ -283,8 +283,8 @@
 					gId("dig" + n + "a").style.display = isRGBW && t != 40 ? "inline" : "none"; // auto calculate white
 					gId("dig" + n + "l").style.display = t > 48 && t < 64 ? "inline" : "none"; // bus clock speed
 					gId("rev" + n).innerHTML =
-						t >= 40 && t < 48 ? "Inverted output" : "Reversed (rotated 180°)"; // change reverse text for analog
-					gId("psd" + n).innerHTML = t >= 40 && t < 48 ? "Index:" : "Start:"; // change analog start description
+						t >= 40 && t < 48 ? "Инвртированный вывод" : "Обратный (перевернут на 180°)"; // change reverse text for analog
+					gId("psd" + n).innerHTML = t >= 40 && t < 48 ? "Индекс:" : "Начало:"; // change analog start description
 				});
 				// display global white channel overrides
 				gId("wc").style.display = gRGBW ? "inline" : "none";
@@ -464,10 +464,10 @@ ${i + 1}:
 <option value="45">PWM RGB+CCT</option>\
 <!--option value="46">PWM RGB+DCCT</option-->'
 					}
-<option value="80">DDP RGB (network)</option>
+<option value="80">DDP RGB (сеть)</option>
 <!--option value="81">E1.31 RGB (network)</option-->
-<option value="82">Art-Net RGB (network)</option>
-<option value="88">DDP RGBW (network)</option>
+<option value="82">Art-Net RGB (сеть)</option>
+<option value="88">DDP RGBW (сеть)</option>
 </select><br>
 <div id="co${i}" style="display:inline">Color Order:
 <select name="CO${i}">
@@ -478,23 +478,23 @@ ${i + 1}:
 <option value="4">BGR</option>
 <option value="5">GBR</option>
 </select></div>
-<div id="dig${i}w" style="display:none">Swap: <select name="WO${i}"><option value="0">None</option><option value="1">W & B</option><option value="2">W & G</option><option value="3">W & R</option></select></div>
-<div id="dig${i}l" style="display:none">Clock: <select name="SP${i}"><option value="0">Slowest</option><option value="1">Slow</option><option value="2">Normal</option><option value="3">Fast</option><option value="4">Fastest</option></select></div>
+<div id="dig${i}w" style="display:none">Свап: <select name="WO${i}"><option value="0">Нет</option><option value="1">W & B</option><option value="2">W & G</option><option value="3">W & R</option></select></div>
+<div id="dig${i}l" style="display:none">Часы: <select name="SP${i}"><option value="0">Медленнейший</option><option value="1">Медленный</option><option value="2">Нормальный</option><option value="3">Быстрый</option><option value="4">Быстрейший</option></select></div>
 <div>
-<span id="psd${i}">Start:</span> <input type="number" name="LS${i}" id="ls${i}" class="l starts" min="0" max="8191" value="${lastEnd(
+<span id="psd${i}">Начало:</span> <input type="number" name="LS${i}" id="ls${i}" class="l starts" min="0" max="8191" value="${lastEnd(
 						i
 					)}" oninput="startsDirty[${i}]=true;UI();" required />&nbsp;
-<div id="dig${i}c" style="display:inline">Length: <input type="number" name="LC${i}" class="l" min="1" max="${maxPB}" value="1" required oninput="UI()" /></div><br>
+<div id="dig${i}c" style="display:inline">Длина: <input type="number" name="LC${i}" class="l" min="1" max="${maxPB}" value="1" required oninput="UI()" /></div><br>
 </div>
 <span id="p0d${i}">GPIO:</span><input type="number" name="L0${i}" required class="s" onchange="UI();pinUpd(this);"/>
 <span id="p1d${i}"></span><input type="number" name="L1${i}" class="s" onchange="UI();pinUpd(this);"/>
 <span id="p2d${i}"></span><input type="number" name="L2${i}" class="s" onchange="UI();pinUpd(this);"/>
 <span id="p3d${i}"></span><input type="number" name="L3${i}" class="s" onchange="UI();pinUpd(this);"/>
 <span id="p4d${i}"></span><input type="number" name="L4${i}" class="s" onchange="UI();pinUpd(this);"/>
-<div id="dig${i}r" style="display:inline"><br><span id="rev${i}">Reversed</span>: <input type="checkbox" name="CV${i}"></div>
-<div id="dig${i}s" style="display:inline"><br>Skip first LEDs: <input type="number" name="SL${i}" min="0" max="255" value="0" oninput="UI()"></div>
-<div id="dig${i}f" style="display:inline"><br>Off Refresh: <input id="rf${i}" type="checkbox" name="RF${i}"></div>
-<div id="dig${i}a" style="display:inline"><br>Auto-calculate white channel from RGB:<br><select name="AW${i}"><option value=0>None</option><option value=1>Brighter</option><option value=2>Accurate</option><option value=3>Dual</option><option value=4>Max</option></select>&nbsp;</div>
+<div id="dig${i}r" style="display:inline"><br><span id="rev${i}">Обращенный</span>: <input type="checkbox" name="CV${i}"></div>
+<div id="dig${i}s" style="display:inline"><br>Пропустить первые LEDы: <input type="number" name="SL${i}" min="0" max="255" value="0" oninput="UI()"></div>
+<div id="dig${i}f" style="display:inline"><br>С обновления: <input id="rf${i}" type="checkbox" name="RF${i}"></div>
+<div id="dig${i}a" style="display:inline"><br>Авто расчет белого в  RGB:<br><select name="AW${i}"><option value=0>Нет</option><option value=1>Ярче</option><option value=2>Точно</option><option value=3>Двойной</option><option value=4>Максимум</option></select>&nbsp;</div>
 </div>`;
 					f.insertAdjacentHTML("beforeend", cn);
 				}
@@ -517,9 +517,9 @@ ${i + 1}:
 <hr class="sml">
 ${
 	i + 1
-}: Start: <input type="number" name="XS${i}" id="xs${i}" class="l starts" min="0" max="65535" value="${start}" oninput="UI();" required="">&nbsp;
-Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65535" value="${len}" required="" oninput="UI()">
-<div style="display:inline">Color Order:
+}: Начало: <input type="number" name="XS${i}" id="xs${i}" class="l starts" min="0" max="65535" value="${start}" oninput="UI();" required="">&nbsp;
+Длина: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65535" value="${len}" required="" oninput="UI()">
+<div style="display:inline">Порядок цветов:
 <select id="xo${i}" name="XO${i}">
 <option value="0">GRB</option>
 <option value="1">RGB</option>
@@ -565,14 +565,14 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 				var be = "BE" + String.fromCharCode((i < 10 ? 48 : 55) + i);
 				c += `Button ${i} GPIO: <input type="number" name="${bt}" onchange="UI()" class="xs" value="${p}">`;
 				c += `&nbsp;<select name="${be}">`;
-				c += `<option value="0" ${t == 0 ? "selected" : ""}>Disabled</option>`;
-				c += `<option value="2" ${t == 2 ? "selected" : ""}>Pushbutton</option>`;
-				c += `<option value="3" ${t == 3 ? "selected" : ""}>Push inverted</option>`;
-				c += `<option value="4" ${t == 4 ? "selected" : ""}>Switch</option>`;
-				c += `<option value="5" ${t == 5 ? "selected" : ""}>PIR sensor</option>`;
-				c += `<option value="6" ${t == 6 ? "selected" : ""}>Touch</option>`;
-				c += `<option value="7" ${t == 7 ? "selected" : ""}>Analog</option>`;
-				c += `<option value="8" ${t == 8 ? "selected" : ""}>Analog inverted</option>`;
+				c += `<option value="0" ${t == 0 ? "selected" : ""}>Деактивированный</option>`;
+				c += `<option value="2" ${t == 2 ? "selected" : ""}>Кнопка-вставка</option>`;
+				c += `<option value="3" ${t == 3 ? "selected" : ""}>Вставки обратный</option>`;
+				c += `<option value="4" ${t == 4 ? "selected" : ""}>Переключить</option>`;
+				c += `<option value="5" ${t == 5 ? "selected" : ""}>PIR сенсор</option>`;
+				c += `<option value="6" ${t == 6 ? "selected" : ""}>Касание</option>`;
+				c += `<option value="7" ${t == 7 ? "selected" : ""}>Аналог</option>`;
+				c += `<option value="8" ${t == 8 ? "selected" : ""}>Аналог инвертир.</option>`;
 				c += `</select>`;
 				c += `<span style="cursor: pointer;" onclick="off('${bt}')">&nbsp;&#x2715;</span><br>`;
 				gId("btns").innerHTML = c;
@@ -621,14 +621,14 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 				var f, fr;
 
 				if (typeof window.FileReader !== "function") {
-					alert("The file API isn't supported on this browser yet.");
+					alert("АПИ файла еще не поддерживается в браузере.");
 					return;
 				}
 
 				if (!o.files) {
-					alert("This browser doesn't support the `files` property of file inputs.");
+					alert("Этот браузер не поддерживает свойства `files` ввода файлов.");
 				} else if (!o.files[0]) {
-					alert("Please select a JSON file first!");
+					alert("Сначала выберите файл JSON!");
 				} else {
 					f = o.files[0];
 					fr = new FileReader();
@@ -699,7 +699,7 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 							if (d.rsvd.includes(j)) continue;
 							let foundPin = d.um_p.indexOf(j);
 							let txt = j === -1 ? "unused" : `${j}`;
-							if (foundPin >= 0 && j !== v) txt += ` used`; // already reserved pin
+							if (foundPin >= 0 && j !== v) txt += ` прим.`; // already reserved pin
 							if (d.ro_gpio.includes(j)) txt += " (R/O)";
 							let opt = addOption(sel, txt, j);
 							if (j === v) opt.selected = true; // this is "our" pin
@@ -732,7 +732,7 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 						let led = pins.includes(i.value);
 						if (!(i.value == oldV || i.value == e.value || led)) return;
 						if (i.value == -1) {
-							i.text = "unused";
+							i.text = "не прим.";
 							return;
 						}
 						i.text = i.value;
@@ -796,7 +796,7 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 					loc = true;
 					locip = localStorage.getItem("locIp");
 					if (!locip) {
-						locip = prompt("File Mode. Please enter WLED IP!");
+						locip = prompt("Режим файла. Введите IP устройства!");
 						localStorage.setItem("locIp", locip);
 					}
 				} else {
@@ -824,11 +824,11 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 		<form id="form_s" name="Sf" method="post">
 			<div class="toprow">
 				<div class="helpB"><button type="button" onclick="H()">?</button></div>
-				<button type="button" onclick="B()">Back</button><button type="submit">Save</button>
+				<button type="button" onclick="B()">Назад</button><button type="submit">Сохранить</button>
 				<hr />
 			</div>
-			<h2>LED &amp; Hardware setup</h2>
-			Total LEDs: <span id="lc">?</span> <span id="pc"></span><br />
+			<h2>Настройка LED &amp; железа</h2>
+			Всего LEDов: <span id="lc">?</span> <span id="pc"></span><br />
 			<!-- <i>Recommended power supply for brightest white:</i><br />
 			<b><span id="psu">?</span></b
 			><br />
@@ -866,8 +866,8 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 				/></span>
 				<i>Keep at default if you are unsure about your type of LEDs.</i><br />
 			</div> -->
-			<h3>Hardware setup</h3>
-			<div id="mLC">LED outputs:</div>
+			<h3>Настройка железа</h3>
+			<div id="mLC">Выводов LED:</div>
 			<!-- <hr class="sml" />
 			<button type="button" id="+" onclick="addLEDs(1,false)">+</button>
 			<button type="button" id="-" onclick="addLEDs(-1,false)">-</button><br />
@@ -877,8 +877,8 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 				style="display: inline-block; width: 100px; height: 10px; border-radius: 20px"></div>
 			<br />
 			<div id="ledwarning" class="warn" style="display: none">
-				&#9888; You might run into stability or lag issues.<br />
-				Use less than <span id="wreason">800 LEDs per output</span> for the best experience!<br />
+				&#9888; Вы можете столкнуться с проблемами со стабильностью или задержками.<br />
+				Используйте меньше <span id="wreason">800 LEDов на вывод</span> для лучшего результата!<br />
 			</div>
 			<!-- <hr class="sml" />
 			Make a segment for each output: <input type="checkbox" name="MS" /><br />
@@ -1001,7 +1001,7 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 				><br />
 			</div>
 			<hr /> -->
-			<button type="button" onclick="B()">Back</button><button type="submit">Save</button>
+			<button type="button" onclick="B()">Назад</button><button type="submit">Сохранить</button>
 		</form>
 		<div id="toast"></div>
 	</body>

@@ -4,7 +4,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>WLED Pixel Art Converter</title>
+    <title>Pixel Art конвертер</title>
     <link rel="stylesheet" href="pixart.css">
     <link rel="shortcut icon" href="favicon-16x16.png">
     <script type="text/javascript">
@@ -24,39 +24,39 @@
               <rect style="fill:#003FFF" x="18" y="10" width="4" height="8"/>
               <rect style="fill:#003FFF" x="22" y="6" width="8" height="4"/>
             </svg>
-            WLED Pixel Art Converter
+            Pixel Art Converter
           </h1>
         </div>
-        <h2>Convert image to WLED JSON (pixel art on WLED matrix)</h2>
+        <h2>Картинку в WLED JSON (pixel art на WLED матрице)</h2>
         <p>
           <table id="fieldTable"  style="width: 100%; table-layout: fixed; align-content: center;">
             <tr>
               <td style="vertical-align: middle;">
-                <label for="ledSetupSelector">Led setup:</label>
+                <label for="ledSetupSelector">Led настройка:</label>
               </td>
               <td class="adaptiveTD">
                 <select id="ledSetupSelector" class="mainSelector">
                   <option value="matrix" selected>2D Matrix</option>
-                  <option value="r2l">Serpentine, first row right to left &lt;-</option>
-                  <option value="l2r">Serpentine, first row left to right -&gt;</option>
+                  <option value="r2l">Serpentine, первая строка справа налево &lt;-</option>
+                  <option value="l2r">Serpentine, первая строка слева направо -&gt;</option>
                 </select>
               </td>
             </tr>        
             <tr>
               <td style="vertical-align: middle;">
-                <label for="formatSelector">Output format:</label>
+                <label for="formatSelector">Формат вывода:</label>
               </td>
               <td class="adaptiveTD">
                 <select id="formatSelector" class="mainSelector">
                   <option value="wled" selected>WLED JSON</option>
                   <option value="curl">CURL</option>
-                  <option value="ha">Home Assistant YAML</option>
+                  <option value="ha">Домашний помощник YAML</option>
                 </select>
               </td>
             </tr>        
             <tr>
               <td style="vertical-align: middle;">
-                <label for="colorFormatSelector">Color code format:</label>
+                <label for="colorFormatSelector">Формат цвета:</label>
               </td>
               <td class="adaptiveTD">
                 <select id="colorFormatSelector" class="mainSelector">
@@ -67,19 +67,19 @@
             </tr>
             <tr>
               <td style="vertical-align: middle;">
-                <label for="addressingSelector">Addressing:</label>
+                <label for="addressingSelector">Адресы:</label>
               </td>
               <td class="adaptiveTD">
                 <select id="addressingSelector" class="mainSelector">
-                  <option value="hybrid" selected>Hybrid (&quot;f0f0f0&quot;,10, 17, &quot;f4f4f4&quot;)</option>
-                  <option value="range">Range (10, 17, &quot;f4f4f4&quot;)</option>
-                  <option value="single">Single (&quot;f4f4f4&quot;)</option>
+                  <option value="hybrid" selected>Гибрид (&quot;f0f0f0&quot;,10, 17, &quot;f4f4f4&quot;)</option>
+                  <option value="range">Диапазон (10, 17, &quot;f4f4f4&quot;)</option>
+                  <option value="single">Один (&quot;f4f4f4&quot;)</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td style="vertical-align: middle;">
-                <label for="brightnessNumber">Brightness:</label>
+                <label for="brightnessNumber">Яркость:</label>
               </td>
               <td style="vertical-align: middle; display: flex; align-items: center;">
                 <input type="range" id="brightnessNumber" min="1" max="255" value="128">
@@ -88,7 +88,7 @@
             </tr>
             <tr>
               <td style="vertical-align: middle;">
-                <label for="colorLimitNumber">Max no of colors/JSON:</label>
+                <label for="colorLimitNumber">Макс. цветов/JSON:</label>
               </td>
               <td style="vertical-align: middle; display: flex; align-items: center;">
                 <input type="range" id="colorLimitNumber" min="1" max="512" value="256">
@@ -97,7 +97,7 @@
             </tr>
             <tr class="ha-hide">
               <td style="vertical-align: middle;">
-                <label for="haID">HA Device ID:</label>
+                <label for="haID">HA устройство ID:</label>
               </td>
               <td class="adaptiveTD">
                 <input class="fullTextField" type="text" id="haID" value="pixel_art_controller_001">
@@ -105,7 +105,7 @@
             </tr>
             <tr class="ha-hide">
               <td style="vertical-align: middle;">
-                <label for="haUID">HA Device Unique ID:</label>
+                <label for="haUID">HA устройство уникальный ID:</label>
               </td>
               <td class="adaptiveTD">
                 <input class="fullTextField" type="text" id="haUID" value="pixel_art_controller_001a">
@@ -113,7 +113,7 @@
             </tr>
             <tr class="ha-hide">
               <td style="vertical-align: middle;">
-                <label for="haName">HA Device Name:</label>
+                <label for="haName">HA имя устройства:</label>
               </td>
               <td class="adaptiveTD">
                 <input class="fullTextField" type="text" id="haName" value="Pixel Art Kitchen">
@@ -121,7 +121,7 @@
             </tr>
             <tr>
               <td style="vertical-align: middle;">
-                <label for="curlUrl">Device IP/host name:</label>
+                <label for="curlUrl">IP/хост устройства:</label>
               </td>
               <td class="adaptiveTD">
                 <input class="fullTextField" type="text" id="curlUrl" value="">
@@ -129,7 +129,7 @@
             </tr>
             <tr>
               <td style="vertical-align: middle;">
-                <label for="targetSegment">Target segment id:</label>
+                <label for="targetSegment">Целевой сегмент id:</label>
               </td>
               <td class="adaptiveTD">
                 <input class="flxTFld" type="number" id="segID" value="0" min="0" max="63">
@@ -146,7 +146,7 @@
                   <svg id="scaleToggle" style="width:36px;height:36px; cursor: pointer;" viewBox="0 0 24 24" onclick="switchScale()">
                     <path id="scaleTogglePath" fill="currentColor" d="M17,7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7M7,15A3,3 0 0,1 4,12A3,3 0 0,1 7,9A3,3 0 0,1 10,12A3,3 0 0,1 7,15Z" />
                   </svg>
-                   &nbsp;Scale image
+                   &nbsp;Масштаб картинки
                 </div>
               </td>
               <td style="vertical-align: middle;">
@@ -163,8 +163,8 @@
         <p>
           <label for="file-picker">
             <div id="drop-zone">    
-                Drop image here <br>or <br>
-                Click to select a file
+                Перетащите картинку <br>или <br>
+                Нажмите чтобы выбрать
             </div>
           </label>
         </p>
@@ -196,7 +196,7 @@
           <button id="sendJSONledbutton" class="buttonclass"></button>
         </div>
         <div>
-          <h3><div id="version">Version 1.0.8</div>&nbsp;-&nbsp; <a href="https://github.com/werkstrom/WLED-PixelArtConverter/blob/main/README.md" target="_blank">Help/About</a></h3>
+          <h3><div id="version">Version 1.0.8</div>&nbsp;-&nbsp; <a href="https://github.com/werkstrom/WLED-PixelArtConverter/blob/main/README.md" target="_blank">Помощь/Инфо</a></h3>
         </div>
       </div>
       <div id=bottom-part style="display: none" class=bottom-part></div>

@@ -164,7 +164,7 @@ async function onLoad()
 		loc = true;
 		locip = localStorage.getItem('locIp');
 		if (!locip) {
-			locip = prompt("File Mode. Please enter WLED IP!");
+			locip = prompt("Режим файла. Введите IP устройства!");
 			localStorage.setItem('locIp', locip);
 		}
 	} else {
@@ -268,7 +268,7 @@ function showErrorToast()
 		ws = null;
 		if (lastinfo.ws > -1) setTimeout(makeWS,500);
 	}
-	showToast('Connection to light failed!', true);
+	showToast('Не удалось подключиться к источнику света!', true);
 }
 
 function clearErrorToast() {gId("toast").className = gId("toast").className.replace("error", "");}
@@ -327,7 +327,7 @@ function cpBck()
 	copyText.select();
 	copyText.setSelectionRange(0, 999999);
 	d.execCommand("copy");
-	showToast("Copied to clipboard!");
+	showToast("Скопировано в буфер обмена!");
 }
 
 function loadPresets(callback = null)
@@ -610,8 +610,8 @@ function populateNodes(i,n)
 			}
 		}
 	}
-	if (i.ndc < 0) cn += `Instance List is disabled.`;
-	else if (nnodes == 0) cn += `No other instances found.`;
+	if (i.ndc < 0) cn += `Список инстансов отключен.`;
+	else if (nnodes == 0) cn += `Других инстансов не обнаружено.`;
 	cn += `<table class="infot">
 	${urows}
 	${inforow("Current instance:",i.name)}
@@ -625,7 +625,7 @@ function loadNodes()
 		method: 'get'
 	})
 	.then(res => {
-		if (!res.ok) showToast('Could not load Node list!', true);
+		if (!res.ok) showToast('Не удалось загрузить список узлов!', true);
 		return res.json();
 	})
 	.then(json => {
@@ -952,22 +952,22 @@ function readState(s,command=false)
 	  var errstr = "";
 	  switch (s.error) {
 		case 10:
-		  errstr = "Could not mount filesystem!";
+		  errstr = "Не удалось смонтировать файловую систему!";
 		  break;
 		case 11:
-		  errstr = "Not enough space to save preset!";
+		  errstr = "Недостаточно места для сохранения предустановки!";
 		  break;
 		case 12:
-		  errstr = "Preset not found.";
+		  errstr = "Предустановка не найдена.";
 		  break;
 		case 13:
-		  errstr = "Missing IR.json.";
+		  errstr = "Отсутствует файл IR.json.";
 		  break;
 		case 19:
-		  errstr = "A filesystem error has occurred.";
+		  errstr = "Произошла ошибка файловой системы.";
 		  break;
 		}
-	  showToast('Error ' + s.error + ": " + errstr, true);
+	  showToast('Ошибка ' + s.error + ": " + errstr, true);
 	}
 
 	selectedPal = i.pal;
@@ -1289,7 +1289,7 @@ function cnfReset()
 	if (!cnfr) {
 		var bt = gId('resetbtn');
 		bt.style.color = "#f00";
-		bt.innerHTML = "Confirm Reboot";
+		bt.innerHTML = "Подтвердите перезагрузку";
 		cnfr = true; return;
 	}
 	window.location.href = "/reset";

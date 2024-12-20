@@ -8,7 +8,7 @@
 		<link
 			rel="shortcut icon"
 			href="data:image/x-icon;base64,AAABAAEAEBAAAAEAGACGAAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAE1JREFUOI1j/P//PwOxgNGeAUMxE9G6cQCKDWAhpADZ2f8PMjBS3QW08QK20KaZC2gfC9hCnqouoNgARgY7zMxAyNlUdQHlXiAlO2MDAD63EVqNHAe0AAAAAElFTkSuQmCC" />
-		<title>WLED</title>
+		<title>Color Beat</title>
 		<script>
 			function feedback() {}
 			// instead of including [script src="iro.js"][/script] and [script src="rangetouch.js"][/script]
@@ -65,9 +65,9 @@
 		<link rel="stylesheet" href="index.css" />
 	</head>
 	<body>
-		<div id="cv" class="overlay">Loading WLED UI...</div>
+		<div id="cv" class="overlay">Загрузка приложения...</div>
 		<noscript
-			><div class="overlay" style="opacity: 1">Sorry, WLED UI needs JavaScript!</div></noscript
+			><div class="overlay" style="opacity: 1">Требуется JavaScript!</div></noscript
 		>
 		<div id="bg"></div>
 
@@ -76,15 +76,15 @@
 				<div class="btnwrap">
 					<button id="buttonPower" onclick="togglePower()" class="tgl">
 						<i class="icons">&#xe08f;</i>
-						<p class="tab-label">Power</p>
+						<p class="tab-label">Вкл/Выкл</p>
 					</button>
 					<button id="buttonNl" onclick="toggleNl()">
 						<i class="icons">&#xe2a2;</i>
-						<p class="tab-label">Timer</p>
+						<p class="tab-label">Таймер</p>
 					</button>
 					<button id="buttonSync" onclick="toggleSync()">
 						<i class="icons">&#xe116;</i>
-						<p class="tab-label">Sync</p>
+						<p class="tab-label">Синхронизация</p>
 					</button>
 					<!--			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">Peek</p></button>-->
 					<!-- <button id="buttonI" onclick="toggleInfo()">
@@ -93,15 +93,15 @@
 					</button> -->
 					<button id="buttonNodes" onclick="toggleNodes()">
 						<i class="icons">&#xe22d;</i>
-						<p class="tab-label">Nodes</p>
+						<p class="tab-label">Узлы</p>
 					</button>
 					<button onclick="window.location.href=getURL('/settings');">
 						<i class="icons">&#xe0a2;</i>
-						<p class="tab-label">Config</p>
+						<p class="tab-label">Настройки</p>
 					</button>
 					<button id="buttonPcm" onclick="togglePcMode(true)">
 						<i class="icons">&#xe23d;</i>
-						<p class="tab-label">PC Mode</p>
+						<p class="tab-label">Режим ПК</p>
 					</button>
 				</div>
 				<div id="briwrap" class="brightness-control">
@@ -161,7 +161,7 @@
 								);
 							"></div>
 					</div>
-					<span class="tooltiptext">Hue</span>
+					<span class="tooltiptext">Тон</span>
 				</div>
 				<div id="swrap" class="slider">
 					<div class="sliderwrap il">
@@ -179,7 +179,7 @@
 							class="sliderdisplay"
 							style="background: linear-gradient(90deg, #aaa 0%, #f00)"></div>
 					</div>
-					<span class="tooltiptext">Saturation</span>
+					<span class="tooltiptext">Насыщенность</span>
 				</div>
 				<div id="vwrap" class="slider">
 					<div class="sliderwrap il">
@@ -195,7 +195,7 @@
 							step="any" />
 						<div class="sliderdisplay"></div>
 					</div>
-					<span class="tooltiptext">Value/Brightness</span>
+					<span class="tooltiptext">Яркость</span>
 				</div>
 				<div id="kwrap" class="slider">
 					<div class="sliderwrap il">
@@ -210,7 +210,7 @@
 							value="6550" />
 						<div class="sliderdisplay"></div>
 					</div>
-					<span class="tooltiptext">Kelvin/Temperature</span>
+					<span class="tooltiptext">Теплота</span>
 				</div>
 				<div id="rgbwrap">
 					<!--p class="labels hd">RGB color</p-->
@@ -227,7 +227,7 @@
 								value="128" />
 							<div class="sliderdisplay"></div>
 						</div>
-						<span class="tooltiptext">Red channel</span>
+						<span class="tooltiptext">Красный</span>
 					</div>
 					<div id="gwrap" class="slider">
 						<div class="sliderwrap il">
@@ -242,7 +242,7 @@
 								value="128" />
 							<div class="sliderdisplay"></div>
 						</div>
-						<span class="tooltiptext">Green channel</span>
+						<span class="tooltiptext">Зеленый</span>
 					</div>
 					<div id="bwrap" class="slider">
 						<div class="sliderwrap il">
@@ -257,7 +257,7 @@
 								value="128" />
 							<div class="sliderdisplay"></div>
 						</div>
-						<span class="tooltiptext">Blue channel</span>
+						<span class="tooltiptext">Синий</span>
 					</div>
 				</div>
 				<div id="wwrap" class="slider">
@@ -274,7 +274,7 @@
 							value="128" />
 						<div class="sliderdisplay"></div>
 					</div>
-					<span class="tooltiptext">White channel</span>
+					<span class="tooltiptext">Белый</span>
 				</div>
 				<div id="wbal" class="slider">
 					<!--p class="labels hd">White balance</p-->
@@ -289,7 +289,7 @@
 							value="128" />
 						<div class="sliderdisplay"></div>
 					</div>
-					<span class="tooltiptext">White balance</span>
+					<span class="tooltiptext">Баланс белого</span>
 				</div>
 				<div id="qcs-w">
 					<div
@@ -401,7 +401,7 @@
 					</button>
 				</div>
 				<p class="labels" id="pall">
-					<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Color palette
+					<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Палитра цвета
 				</p>
 				<div id="palw" class="il">
 					<div class="staytop fnd">
@@ -417,7 +417,7 @@
 						<div class="lstI">
 							<label class="radio schkl" onclick="loadPalettes()">
 								<div class="lstIcontent">
-									<span class="lstIname"> Loading... </span>
+									<span class="lstIname"> Загрузка... </span>
 								</div>
 							</label>
 						</div>
@@ -625,11 +625,11 @@
 
 			<div id="Presets" class="tabcontent">
 				<div id="pql"></div>
-				<p class="labels hd">Presets</p>
+				<p class="labels hd">Пресеты</p>
 				<div id="presetTabs" class="preset-modes-tabs">
 					<label class="preset-modes-tabs__tab preset-modes-tabs__tab--active">
 						<span id="filterActive" class="check fchkl">
-							Active &#8226;
+							Активный &#8226;
 							<input
 								type="checkbox"
 								name="presets-tab"
@@ -639,7 +639,7 @@
 					</label>
 					<label class="preset-modes-tabs__tab">
 						<span id="filterMusic" class="check fchkl">
-							Music &#9834;
+							Музыкальный &#9834;
 							<input
 								type="checkbox"
 								name="presets-tab"
@@ -658,19 +658,19 @@
 					<i class="icons search-icon">&#xe0a1;</i>
 				</div>
 				<div id="pcont" class="list">
-					<span onclick="loadPresets()">Loading...</span>
+					<span onclick="loadPresets()">Загрузка...</span>
 				</div>
 				<div id="putil" class="staybot"></div>
 			</div>
 			<div id="Contstructor" class="tabcontent">
 				<p class="labels" id="modeLabel">Сегменты</p>
-				<div id="segcont">Loading...</div>
+				<div id="segcont">Загрузка...</div>
 				<div id="segutil" class="staybot"></div>
 				<div id="segutil2">
-					<button class="btn btn-s" id="rsbtn" onclick="rSegs()">Reset segments</button>
+					<button class="btn btn-s" id="rsbtn" onclick="rSegs()">Сбросить сегменты</button>
 				</div>
 				<p>
-					Transition:
+					Переход:
 					<input id="tt" type="number" min="0" max="65.5" step="0.1" value="0.7" />&nbsp;s
 				</p>
 				<p id="ledmap" class="hide"></p>
@@ -695,7 +695,7 @@
 						<div class="lstI">
 							<label class="radio schkl" onclick="loadFX()">
 								<div class="lstIcontent">
-									<span class="lstIname"> Loading... </span>
+									<span class="lstIname"> Загрузка... </span>
 								</div>
 							</label>
 						</div>
@@ -748,7 +748,7 @@
 							<div class="sliderdisplay"></div>
 						</div>
 						<output class="sliderbubble"></output>
-						<span id="sliderLabel0" class="tooltiptext">Effect speed</span>
+						<span id="sliderLabel0" class="tooltiptext">Скорость эффекта</span>
 					</div>
 					<div id="slider1" class="slider">
 						<i class="icons slider-icon" onclick="tglLabels()">&#xe409;</i>
@@ -765,7 +765,7 @@
 							<div class="sliderdisplay"></div>
 						</div>
 						<output class="sliderbubble"></output>
-						<span class="tooltiptext" id="sliderLabel1">Effect intensity</span>
+						<span class="tooltiptext" id="sliderLabel1">Интенсивность эффекта</span>
 					</div>
 					<div id="slider2" class="slider hide">
 						<i class="icons slider-icon">&#xe410;</i>
@@ -782,7 +782,7 @@
 							<div class="sliderdisplay"></div>
 						</div>
 						<output class="sliderbubble"></output>
-						<span class="tooltiptext" id="sliderLabel2">Custom 1</span>
+						<span class="tooltiptext" id="sliderLabel2">Польз. 1</span>
 					</div>
 					<div id="slider3" class="slider hide">
 						<i class="icons slider-icon">&#xe0a2;</i>
@@ -799,7 +799,7 @@
 							<div class="sliderdisplay"></div>
 						</div>
 						<output class="sliderbubble"></output>
-						<span class="tooltiptext" id="sliderLabel3">Custom 2</span>
+						<span class="tooltiptext" id="sliderLabel3">Польз. 2</span>
 					</div>
 					<div id="slider4" class="slider hide">
 						<i class="icons slider-icon">&#xe0e8;</i>
@@ -816,24 +816,24 @@
 							<div class="sliderdisplay"></div>
 						</div>
 						<output class="sliderbubble"></output>
-						<span class="tooltiptext" id="sliderLabel4">Custom 3</span>
+						<span class="tooltiptext" id="sliderLabel4">Польз. 3</span>
 					</div>
 					<button class="btn add-music-preset-button" onclick="makePUtil()">
 							<i class="icons btn-icon">&#xe18a;</i>Добавить пресет
 					</button>
 					<div id="fxopt" class="option fade">
 						<label id="opt0" class="check ochkl hide"
-							><i class="icons">&#xe2b3;</i><span class="tooltiptext" id="optLabel0">Check 1</span>
+							><i class="icons">&#xe2b3;</i><span class="tooltiptext" id="optLabel0">Галочка 1</span>
 							<input id="checkO1" type="checkbox" onchange="setOption(1, this.checked)" />
 							<span class="checkmark"></span>
 						</label>
 						<label id="opt1" class="check ochkl hide"
-							><i class="icons">&#xe34b;</i><span class="tooltiptext" id="optLabel1">Check 2</span>
+							><i class="icons">&#xe34b;</i><span class="tooltiptext" id="optLabel1">Галочка 2</span>
 							<input id="checkO2" type="checkbox" onchange="setOption(2, this.checked)" />
 							<span class="checkmark"></span>
 						</label>
 						<label id="opt2" class="check ochkl hide"
-							><i class="icons">&#xe04c;</i><span class="tooltiptext" id="optLabel2">Check 3</span>
+							><i class="icons">&#xe04c;</i><span class="tooltiptext" id="optLabel2">Галочка 3</span>
 							<input id="checkO3" type="checkbox" onchange="setOption(3, this.checked)" />
 							<span class="checkmark"></span>
 						</label>
@@ -879,15 +879,15 @@
 					alt=""
 					src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAFCAYAAAC5Fuf5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABbSURBVChTlY9bDoAwDMNW7n9nwCipytQN4Z8tbrTHmDmF4oPzyldwRqp1SSdnV/NuZuzqerAByxXznBw3igkeFEfXyUuhK/yFM0CxJfyqXZEOc6/Sr9/bf7uIC5Nwd7orMvAPAAAAAElFTkSuQmCC" />
 			</div>
-			<div id="kv">Loading...</div>
+			<div id="kv">Загрузка...</div>
 			<br />
 			<div>
-				<button class="btn infobtn" onclick="requestJson()">Refresh</button>
-				<button class="btn infobtn" onclick="toggleNodes()">Instance List</button>
+				<button class="btn infobtn" onclick="requestJson()">Обновить ленту</button>
+				<button class="btn infobtn" onclick="toggleNodes()">Список узлов</button>
 				<button class="btn infobtn" onclick="window.open(getURL('/update'),'_self');">
-					Update WLED
+					Обновить приложение
 				</button>
-				<button class="btn infobtn" id="resetbtn" onclick="cnfReset()">Reboot WLED</button>
+				<button class="btn infobtn" id="resetbtn" onclick="cnfReset()">Перезапустить</button>
 			</div>
 			<br />
 			<span class="h"
@@ -900,28 +900,27 @@
 			<button class="btn btn-xs close" onclick="toggleNodes()">
 				<i class="icons rot45">&#xe18a;</i>
 			</button>
-			<div id="ndlt">WLED instances</div>
-			<div id="kn">Loading...</div>
+			<div id="ndlt">Список инстансов</div>
+			<div id="kn">Загрузка...</div>
 			<div style="position: sticky; bottom: 0">
-				<button class="btn infobtn" onclick="loadNodes()">Refresh</button>
+				<button class="btn infobtn" onclick="loadNodes()">Обновить узлы</button>
 			</div>
 		</div>
 
 		<div id="mlv2D" class="modal">
-			<div id="klv2D" style="width: 100%; height: 100%">Loading...</div>
+			<div id="klv2D" style="width: 100%; height: 100%">Загрузка...</div>
 		</div>
 
 		<div id="rover" class="modal">
 			<i class="icons huge">&#xe410;</i><br />
 			<div id="lv">?</div>
 			<br /><br />
-			To use built-in effects, use an override button below.<br />
-			You can return to realtime mode by pressing the star in the top left corner.<br />
-			<button class="btn" onclick="setLor(1)">Override once</button>
-			<button class="btn" onclick="setLor(2)">Override until reboot</button><br />
+			Чтобы использовать встроенные эффекты нажмите на кнопку перезаписи ниже.<br />
+			Вы можете вернуться в режим реального времени нажав на звезду в левом верхнем углу.<br />
+			<button class="btn" onclick="setLor(1)">Перезаписать один раз</button>
+			<button class="btn" onclick="setLor(2)">Перезаписать до перезапуска</button><br />
 			<span class="h"
-				>For best performance, it is recommended to turn off the streaming source when not in
-				use.</span
+				>Чтобы повысить производительность, рекомендуется выключать потоковый источник если он не используется.</span
 			>
 		</div>
 

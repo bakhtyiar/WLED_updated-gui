@@ -235,7 +235,7 @@ function onLoad() {
         loc = true;
         locip = localStorage.getItem('locIp');
         if (!locip) {
-            locip = prompt("File Mode. Please enter WLED IP!");
+            locip = prompt("Режим файла. Введите IP устройства!");
             localStorage.setItem('locIp', locip);
         }
     } else {
@@ -384,7 +384,7 @@ function getLowestUnusedP() {
 
 function checkUsed(i) {
     var id = gId(`p${i}id`).value;
-    if (pJson[id] && (i == 0 || id != i)) gId(`p${i}warn`).innerHTML = `&#9888; Overwriting ${pName(id)}!`; else gId(`p${i}warn`).innerHTML = id > 250 ? "&#9888; ID must be 250 or less." : "";
+    if (pJson[id] && (i == 0 || id != i)) gId(`p${i}warn`).innerHTML = `&#9888; Перезапись ${pName(id)}!`; else gId(`p${i}warn`).innerHTML = id > 250 ? "&#9888; ID должен быть 250 или меньше." : "";
 }
 
 function pName(i) {
@@ -418,7 +418,7 @@ function cpBck() {
     copyText.select();
     copyText.setSelectionRange(0, 999999);
     d.execCommand("copy");
-    showToast("Copied to clipboard!");
+    showToast("Скопировано в буфер обмена!");
 }
 
 function presetError(empty) {
@@ -435,10 +435,10 @@ function presetError(empty) {
 
     if (hasBackup) {
         cn += `<br><br>`;
-        if (empty) cn += `However, there is backup preset data of a previous installation available.<br>
-			(Saving a preset will hide this and overwrite the backup)`; else cn += `Here is a backup of the last known good state:`;
+        if (empty) cn += `Доступны резервные копии предустановленных данных предыдущей установки.<br>
+			(Сохранение предустановки скроет это и перезапишет резервную копию)`; else cn += `Вот резервная копия последнего известного исправного состояния:`;
         cn += `<textarea id="bck"></textarea><br>
-			<button class="btn" onclick="cpBck()">Copy to clipboard</button>`;
+			<button class="btn" onclick="cpBck()">Скопировать в буфер обмена</button>`;
     }
     cn += `</div>`;
     gId('pcont').innerHTML = cn;
@@ -554,7 +554,7 @@ function populateQL() {
     var cn = "";
     if (pQL.length > 0) {
         pQL.sort((a, b) => (a[0] > b[0]));
-        cn += `<p class="labels hd">Quick load</p>`;
+        cn += `<p class="labels hd">Быстрая загрузка</p>`;
         for (var key of (pQL || [])) {
             cn += `<button class="btn btn-xs psts" id="p${key[0]}qlb" title="${key[2] ? key[2] : ''}" onclick="setPreset(${key[0]});">${key[1]}</button>`;
         }
@@ -744,15 +744,15 @@ function populateSegments(s) {
         let staY = inst.startY;
         let stoY = inst.stopY;
         let isMSeg = isM && staX < mw * mh; // 2D matrix segment
-        let rvXck = `<label class="check revchkl">Reverse ${isM ? '' : 'direction'}<input type="checkbox" id="seg${i}rev" onchange="setRev(${i})" ${inst.rev ? "checked" : ""}><span class="checkmark"></span></label>`;
-        let miXck = `<label class="check revchkl">Mirror<input type="checkbox" id="seg${i}mi" onchange="setMi(${i})" ${inst.mi ? "checked" : ""}><span class="checkmark"></span></label>`;
+        let rvXck = `<label class="check revchkl">Обратный ${isM ? '' : 'direction'}<input type="checkbox" id="seg${i}rev" onchange="setRev(${i})" ${inst.rev ? "checked" : ""}><span class="checkmark"></span></label>`;
+        let miXck = `<label class="check revchkl">Зеркальный<input type="checkbox" id="seg${i}mi" onchange="setMi(${i})" ${inst.mi ? "checked" : ""}><span class="checkmark"></span></label>`;
         let rvYck = "", miYck = "";
         if (isMSeg) {
-            rvYck = `<label class="check revchkl">Reverse<input type="checkbox" id="seg${i}rY" onchange="setRevY(${i})" ${inst.rY ? "checked" : ""}><span class="checkmark"></span></label>`;
-            miYck = `<label class="check revchkl">Mirror<input type="checkbox" id="seg${i}mY" onchange="setMiY(${i})" ${inst.mY ? "checked" : ""}><span class="checkmark"></span></label>`;
+            rvYck = `<label class="check revchkl">Обратный<input type="checkbox" id="seg${i}rY" onchange="setRevY(${i})" ${inst.rY ? "checked" : ""}><span class="checkmark"></span></label>`;
+            miYck = `<label class="check revchkl">Зеркальный<input type="checkbox" id="seg${i}mY" onchange="setMiY(${i})" ${inst.mY ? "checked" : ""}><span class="checkmark"></span></label>`;
         }
-        let map2D = `<div id="seg${i}map2D" data-map="map2D" class="lbl-s hide">Expand 1D FX<br>` + `<div class="sel-p"><select class="sel-p" id="seg${i}m12" onchange="setM12(${i})">` + `<option value="0" ${inst.m12 == 0 ? ' selected' : ''}>Pixels</option>` + `<option value="1" ${inst.m12 == 1 ? ' selected' : ''}>Bar</option>` + `<option value="2" ${inst.m12 == 2 ? ' selected' : ''}>Arc</option>` + `<option value="3" ${inst.m12 == 3 ? ' selected' : ''}>Corner</option>` + `</select></div>` + `</div>`;
-        let sndSim = `<div data-snd="si" class="lbl-s hide">Sound sim<br>` + `<div class="sel-p"><select class="sel-p" id="seg${i}si" onchange="setSi(${i})">` + `<option value="0" ${inst.si == 0 ? ' selected' : ''}>BeatSin</option>` + `<option value="1" ${inst.si == 1 ? ' selected' : ''}>WeWillRockYou</option>` + `</select></div>` + `</div>`;
+        let map2D = `<div id="seg${i}map2D" data-map="map2D" class="lbl-s hide">Expand 1D FX<br>` + `<div class="sel-p"><select class="sel-p" id="seg${i}m12" onchange="setM12(${i})">` + `<option value="0" ${inst.m12 == 0 ? ' selected' : ''}>Пиксели</option>` + `<option value="1" ${inst.m12 == 1 ? ' selected' : ''}>Полоса</option>` + `<option value="2" ${inst.m12 == 2 ? ' selected' : ''}>Арка</option>` + `<option value="3" ${inst.m12 == 3 ? ' selected' : ''}>Угол</option>` + `</select></div>` + `</div>`;
+        let sndSim = `<div data-snd="si" class="lbl-s hide">Симуляция звука<br>` + `<div class="sel-p"><select class="sel-p" id="seg${i}si" onchange="setSi(${i})">` + `<option value="0" ${inst.si == 0 ? ' selected' : ''}>BeatSin</option>` + `<option value="1" ${inst.si == 1 ? ' selected' : ''}>WeWillRockYou</option>` + `</select></div>` + `</div>`;
         cn += `<div class="seg lstI ${i == s.mainseg ? 'selected' : ''} ${exp ? "expanded" : ""}" id="seg${i}" data-set="${inst.set}">` + `<label class="check schkl">` + `<input type="checkbox" id="seg${i}sel" onchange="selSeg(${i})" ${inst.sel ? "checked" : ""}>` + `<span class="checkmark"></span>` + `</label>` + `<div class="segname" onclick="selSegEx(${i})">` + `<i class="icons e-icon frz" id="seg${i}frz" onclick="event.preventDefault();tglFreeze(${i});">&#x${inst.frz ? (li.live && li.liveseg == i ? 'e410' : 'e0e8') : 'e325'};</i>` + (inst.n ? inst.n : "Segment " + i) + `<div class="pop hide" onclick="event.preventDefault();event.stopPropagation();">` + `<i class="icons g-icon" style="color:${cG};" onclick="this.nextElementSibling.classList.toggle('hide');">&#x278${String.fromCharCode(inst.set + "A".charCodeAt(0))};</i>` + `<div class="pop-c hide"><span style="color:var(--c-f);" onclick="setGrp(${i},0);">&#x278A;</span><span style="color:var(--c-r);" onclick="setGrp(${i},1);">&#x278B;</span><span style="color:var(--c-g);" onclick="setGrp(${i},2);">&#x278C;</span><span style="color:var(--c-l);" onclick="setGrp(${i},3);">&#x278D;</span></div>` + `</div> ` + `<i class="icons edit-icon flr" id="seg${i}nedit" onclick="tglSegn(${i})">&#xe2c6;</i>` + `</div>` + `<i class="icons e-icon flr" id="sege${i}" onclick="expand(${i})">&#xe395;</i>` + (cfg.comp.segpwr ? segp : '') + `<div class="segin" id="seg${i}in">` + `<input type="text" class="ptxt" id="seg${i}t" autocomplete="off" maxlength=${li.arch == "esp8266" ? 32 : 64} value="${inst.n ? inst.n : ""}" placeholder="Enter name..."/>` + `<table class="infot segt">` + `<tr>` + `<td>${isMSeg ? 'Start X' : 'Start LED'}</td>` + `<td>${isMSeg ? (cfg.comp.seglen ? "Width" : "Stop X") : (cfg.comp.seglen ? "LED count" : "Stop LED")}</td>` + `<td>${isMSeg ? '' : 'Offset'}</td>` + `</tr>` + `<tr>` + `<td><input class="segn" id="seg${i}s" type="number" min="0" max="${(isMSeg ? mw : ledCount) - 1}" value="${staX}" oninput="updateLen(${i})" onkeydown="segEnter(${i})"></td>` + `<td><input class="segn" id="seg${i}e" type="number" min="0" max="${(isMSeg ? mw : ledCount)}" value="${stoX - (cfg.comp.seglen ? staX : 0)}" oninput="updateLen(${i})" onkeydown="segEnter(${i})"></td>` + `<td ${isMSeg ? 'style="text-align:revert;"' : ''}>${isMSeg ? miXck + '<br>' + rvXck : ''}<input class="segn ${isMSeg ? 'hide' : ''}" id="seg${i}of" type="number" value="${inst.of}" oninput="updateLen(${i})"></td>` + `</tr>` + (isMSeg ? '<tr><td>Start Y</td><td>' + (cfg.comp.seglen ? 'Height' : 'Stop Y') + '</td><td></td></tr>' + '<tr>' + '<td><input class="segn" id="seg' + i + 'sY" type="number" min="0" max="' + (mh - 1) + '" value="' + staY + '" oninput="updateLen(' + i + ')" onkeydown="segEnter(' + i + ')"></td>' + '<td><input class="segn" id="seg' + i + 'eY" type="number" min="0" max="' + mh + '" value="' + (stoY - (cfg.comp.seglen ? staY : 0)) + '" oninput="updateLen(' + i + ')" onkeydown="segEnter(' + i + ')"></td>' + '<td style="text-align:revert;">' + miYck + '<br>' + rvYck + '</td>' + '</tr>' : '') + `<tr>` + `<td>Grouping</td>` + `<td>Spacing</td>` + `<td></td>` + `</tr>` + `<tr>` + `<td><input class="segn" id="seg${i}grp" type="number" min="1" max="255" value="${inst.grp}" oninput="updateLen(${i})" onkeydown="segEnter(${i})"></td>` + `<td><input class="segn" id="seg${i}spc" type="number" min="0" max="255" value="${inst.spc}" oninput="updateLen(${i})" onkeydown="segEnter(${i})"></td>` + `<td><button class="btn btn-xs" onclick="setSeg(${i})"><i class="icons btn-icon" id="segc${i}">&#xe390;</i></button></td>` + `</tr>` + `</table>` + `<div class="h bp" id="seg${i}len"></div>` + (!isMSeg ? rvXck : '') + (isMSeg && stoY - staY > 1 && stoX - staX > 1 ? map2D : '') + (s.AudioReactive && s.AudioReactive.on ? "" : sndSim) + `<label class="check revchkl" id="seg${i}lbtm">` + (isMSeg ? 'Transpose' : 'Mirror effect') + (isMSeg ? '<input type="checkbox" id="seg' + i + 'tp" onchange="setTp(' + i + ')" ' + (inst.tp ? "checked" : "") + '>' : '<input type="checkbox" id="seg' + i + 'mi" onchange="setMi(' + i + ')" ' + (inst.mi ? "checked" : "") + '>') + `<span class="checkmark"></span>` + `</label>` + `<div class="del">` + `<button class="btn btn-xs" id="segr${i}" title="Repeat until end" onclick="rptSeg(${i})"><i class="icons btn-icon">&#xe22d;</i></button>` + `<button class="btn btn-xs" id="segd${i}" title="Delete" onclick="delSeg(${i})"><i class="icons btn-icon">&#xe037;</i></button>` + `</div>` + `</div>` + (cfg.comp.segpwr ? '' : segp) + `</div>`;
     }
 
@@ -775,7 +775,7 @@ function populateSegments(s) {
     gId('segutil2').style.display = (segCount > 1) ? "block" : "none"; // rsbtn parent
 
     if (Array.isArray(li.maps) && li.maps.length > 1) {
-        let cont = `Ledmap:&nbsp;<select class="sel-sg" onchange="requestJson({'ledmap':parseInt(this.value)})"><option value="" selected>Unchanged</option>`;
+        let cont = `Ledmap:&nbsp;<select class="sel-sg" onchange="requestJson({'ledmap':parseInt(this.value)})"><option value="" selected>Неизменно</option>`;
         for (const k of (li.maps || [])) cont += `<option value="${k.id}">${k.id == 0 ? 'Default' : (k.n ? k.n : 'ledmap' + k.id + '.json')}</option>`;
         cont += "</select></div>";
         gId("ledmap").innerHTML = cont;
@@ -951,7 +951,7 @@ function populateNodes(i, n) {
             }
         }
     }
-    if (i.ndc < 0) cn += `Instance List is disabled.`; else if (nnodes == 0) cn += `No other instances found.`;
+    if (i.ndc < 0) cn += `Список инстансов отключен.`; else if (nnodes == 0) cn += `Других инстансов не обнаружено.`;
     cn += `<table>
 	${inforow("Current instance:", i.name)}
 	${urows}
@@ -964,7 +964,7 @@ function loadNodes() {
         method: 'get'
     })
         .then((res) => {
-            if (!res.ok) showToast('Could not load Node list!', true);
+            if (!res.ok) showToast('Ошибка загрузки списка узлов!', true);
             return res.json();
         })
         .then((json) => {
@@ -1206,7 +1206,7 @@ function displayRover(i, s) {
     gId('rover').style.transform = (i.live && s.lor == 0 && i.liveseg < 0) ? "translateY(0px)" : "translateY(100%)";
     var sour = i.lip ? i.lip : "";
     if (sour.length > 2) sour = " from " + sour;
-    gId('lv').innerHTML = `WLED is receiving live ${i.lm} data${sour}`;
+    gId('lv').innerHTML = `Устройство получает ${i.lm} data${sour}`;
     gId('roverstar').style.display = (i.live && s.lor) ? "block" : "none";
 }
 
@@ -1337,22 +1337,22 @@ function readState(s, command = false) {
         var errstr = "";
         switch (s.error) {
             case 10:
-                errstr = "Could not mount filesystem!";
+                errstr = "Не удалось смонтировать файловую систему!";
                 break;
             case 11:
-                errstr = "Not enough space to save preset!";
+                errstr = "Недостаточно места для сохранения предустановки!";
                 break;
             case 12:
-                errstr = "Preset not found.";
+                errstr = "Предустановка не найдена.";
                 break;
             case 13:
-                errstr = "Missing ir.json.";
+                errstr = "Отсутствует файл ir.json.";
                 break;
             case 19:
-                errstr = "A filesystem error has occured.";
+                errstr = "Произошла ошибка файловой системы.";
                 break;
         }
-        showToast('Error ' + s.error + ": " + errstr, true);
+        showToast('Ошибка ' + s.error + ": " + errstr, true);
     }
 
     selectedPal = i.pal;
@@ -1399,7 +1399,7 @@ function setEffectParameters(idx) {
         var label = gId("sliderLabel" + i);
         // if (not controlDefined and for AC speed or intensity and for SR all sliders) or slider has a value
         if ((!controlDefined && i < ((idx < 128) ? 2 : nSliders)) || (slOnOff.length > i && slOnOff[i] != "")) {
-            if (slOnOff.length > i && slOnOff[i] != "!") label.innerHTML = slOnOff[i]; else if (i == 0) label.innerHTML = "Effect speed"; else if (i == 1) label.innerHTML = "Effect intensity"; else label.innerHTML = "Custom" + (i - 1);
+            if (slOnOff.length > i && slOnOff[i] != "!") label.innerHTML = slOnOff[i]; else if (i == 0) label.innerHTML = "Effect speed"; else if (i == 1) label.innerHTML = "Интенсивность эффекта"; else label.innerHTML = "Польз." + (i - 1);
             slider.classList.remove('hide');
         } else {
             slider.classList.add('hide');
@@ -1473,10 +1473,10 @@ function setEffectParameters(idx) {
             var v = Math.max(0, Math.min(255, parseInt(paOnOff[0].substr(dPos + 1))));
             paOnOff[0] = paOnOff[0].substring(0, dPos);
         }
-        if (paOnOff.length > 0 && paOnOff[0] != "!") pall.innerHTML = paOnOff[0]; else pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Color palette';
+        if (paOnOff.length > 0 && paOnOff[0] != "!") pall.innerHTML = paOnOff[0]; else pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Палитра цветов';
     } else {
         // disable palette list
-        pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Color palette not used';
+        pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Палитра цветов не использ.';
         palw.style.display = "none";
     }
     // not all color selectors shown, hide palettes created from color selectors
@@ -1579,9 +1579,9 @@ function togglePower() {
 function toggleNl() {
     nlA = !nlA;
     if (nlA) {
-        showToast(`Timer active. Your light will turn ${nlTar > 0 ? "on" : "off"} ${nlMode ? "over" : "after"} ${nlDur} minutes.`);
+        showToast(`Таймер включен. Ваш индикатор ${nlTar > 0 ? "вкл" : "выкл"} ${nlMode ? "после" : "до"} ${nlDur} минут.`);
     } else {
-        showToast('Timer deactivated.');
+        showToast('Таймер дезактивирован.');
     }
     var obj = {"nl": {"on": nlA}};
     requestJson(obj);
@@ -1589,7 +1589,7 @@ function toggleNl() {
 
 function toggleSync() {
     syncSend = !syncSend;
-    if (syncSend) showToast('Other lights in the network will now sync to this one.'); else showToast('This light and other lights in the network will no longer sync.');
+    if (syncSend) showToast('Другие источники света в сети теперь будут синхронизированы с этим источником.'); else showToast('Этот индикатор и другие индикаторы в сети больше не будут синхронизироваться.');
     var obj = {"udpn": {"send": syncSend}};
     if (syncTglRecv) obj.udpn.recv = syncSend;
     requestJson(obj);
@@ -1690,7 +1690,7 @@ function makePlSel(el, incPl = false) {
 function refreshPlE(p) {
     var plEDiv = gId(`ple${p}`);
     if (!plEDiv) return;
-    var content = "<div class=\"first c\">Playlist entries</div>";
+    var content = "<div class=\"first c\">Данные плейлистов</div>";
     for (var i = 0; i < plJson[p].ps.length; i++) {
         content += makePlEntry(p, i);
     }
@@ -1773,60 +1773,60 @@ function makeP(i, pl) {
             ps: [1], dur: [100], transition: [tr], repeat: 0, r: false, end: 0
         };
         var rep = plJson[i].repeat ? plJson[i].repeat : 0;
-        content += `<div id="ple${i}" style="margin-top:10px;"></div><label class="check revchkl">Shuffle
+        content += `<div id="ple${i}" style="margin-top:10px;"></div><label class="check revchkl">Перемешать
 	<input type="checkbox" id="pl${i}rtgl" onchange="plR(${i})" ${plJson[i].r || rep < 0 ? "checked" : ""}>
 	<span class="checkmark"></span>
 </label>
-<label class="check revchkl">Repeat indefinitely
+<label class="check revchkl">Повторять бесконечно
 	<input type="checkbox" id="pl${i}rptgl" onchange="plR(${i})" ${rep > 0 ? "" : "checked"}>
 	<span class="checkmark"></span>
 </label>
 <div id="pl${i}o1" style="display:${rep > 0 ? "block" : "none"}">
-<div class="c">Repeat <input type="number" id="pl${i}rp" oninput="plR(${i})" max=127 min=0 value=${rep > 0 ? rep : 1}> times</div>
-<div class="sel">End preset:<br>
+<div class="c">Повторить <input type="number" id="pl${i}rp" oninput="plR(${i})" max=127 min=0 value=${rep > 0 ? rep : 1}> раз</div>
+<div class="sel">Конец пресета:<br>
 <div class="sel-p"><select class="sel-ple" id="pl${i}selEnd" onchange="plR(${i})" data-val=${plJson[i].end ? plJson[i].end : 0}>
-<option value="0">None</option>
-<option value="255">Restore preset</option>
+<option value="0">Нет</option>
+<option value="255">Восстановить пресет</option>
 ${makePlSel(plJson[i].end ? plJson[i].end : 0, true)}
 </select></div></div>
 </div>
-<div class="c"><button class="btn btn-p" onclick="testPl(${i}, this)"><i class='icons btn-icon'>&#xe139;</i>Test</button></div>`;
+<div class="c"><button class="btn btn-p" onclick="testPl(${i}, this)"><i class='icons btn-icon'>&#xe139;</i>Тест</button></div>`;
     } else {
         content += `<label class="check revchkl">
 	<span class="lstIname">
-	Include brightness
+	Учитывать яркость
 	</span>
 	<input type="checkbox" id="p${i}ibtgl" checked>
 	<span class="checkmark"></span>
 </label>
 <label class="check revchkl">
 	<span class="lstIname">
-	Save segment bounds
+	Сохранить границы сегмента
 	</span>
 	<input type="checkbox" id="p${i}sbtgl" checked>
 	<span class="checkmark"></span>
 </label>
 <label class="check revchkl">
 	<span class="lstIname">
-	Checked segments only
+	Только выделенные сегменты
 	</span>
 	<input type="checkbox" id="p${i}sbchk">
 	<span class="checkmark"></span>
 </label>`;
         if (Array.isArray(lastinfo.maps) && lastinfo.maps.length > 1) {
-            content += `<div class="lbl-l">Ledmap:&nbsp;<div class="sel-p"><select class="sel-p" id="p${i}lmp"><option value="">Unchanged</option>`;
+            content += `<div class="lbl-l">Ledmap:&nbsp;<div class="sel-p"><select class="sel-p" id="p${i}lmp"><option value="">Неизменно</option>`;
             for (const k of (lastinfo.maps || [])) content += `<option value="${k.id}"${(i > 0 && pJson[i].ledmap == k.id) ? " selected" : ""}>${k.id == 0 ? 'Default' : (k.n ? k.n : 'ledmap' + k.id + '.json')}</option>`;
             content += "</select></div></div>";
         }
     }
 
     return `<input type="text" class="ptxt ${i == 0 ? 'show' : ''}" id="p${i}txt" autocomplete="off" maxlength=32 value="${(i > 0) ? pName(i) : ""}" placeholder="Enter name..."/>
-<div class="c">Quick load label: <input type="text" class="stxt" maxlength=2 value="${qlName(i)}" id="p${i}ql" autocomplete="off"/></div>
-<div class="h">(leave empty for no Quick load button)</div>
+<div class="c">Лейбл быстрая загрузка: <input type="text" class="stxt" maxlength=2 value="${qlName(i)}" id="p${i}ql" autocomplete="off"/></div>
+<div class="h">(оставьте пустым если не хотите кнопку быстрой загрузки)</div>
 <div ${pl && i == 0 ? "style='display:none'" : ""}>
 <label class="check revchkl">
 	<span class="lstIname">
-	${pl ? "Show playlist editor" : (i > 0) ? "Overwrite with state" : "Use current state"}
+	${pl ? "Показать редактор плейлиста" : (i > 0) ? "Перезаписать со состоянием" : "Исполь. текущ. состояние"}
 	</span>
 	<input type="checkbox" id="p${i}cstgl" onchange="tglCs(${i})" ${(i == 0 || pl) ? "checked" : ""}>
 	<span class="checkmark"></span>
@@ -1836,8 +1836,8 @@ ${makePlSel(plJson[i].end ? plJson[i].end : 0, true)}
 <div class="po1" id="p${i}o1">${content}</div>
 <div class="c m6">Save to ID <input id="p${i}id" type="number" oninput="checkUsed(${i})" max=250 min=1 value=${(i > 0) ? i : getLowestUnusedP()}></div>
 <div class="c">
-	<button class="btn btn-p" onclick="saveP(${i},${pl})"><i class="icons btn-icon">&#xe390;</i>Save</button>
-	${(i > 0) ? '<button class="btn btn-p" id="p' + i + 'del" onclick="delP(' + i + ')"><i class="icons btn-icon">&#xe037;</i>Delete' : '<button class="btn btn-p" onclick="resetPUtil()">Cancel'}</button>
+	<button class="btn btn-p" onclick="saveP(${i},${pl})"><i class="icons btn-icon">&#xe390;</i>Сохранить</button>
+	${(i > 0) ? '<button class="btn btn-p" id="p' + i + 'del" onclick="delP(' + i + ')"><i class="icons btn-icon">&#xe037;</i>Delete' : '<button class="btn btn-p" onclick="resetPUtil()">Отменить'}</button>
 </div>
 <div class="pwarn ${(i > 0) ? "bp" : ""} c" id="p${i}warn"></div>
 ${(i > 0) ? ('<div class="h">ID ' + i + '</div>') : ""}`;
@@ -1873,8 +1873,8 @@ function makePlEntry(p, i) {
 		<td class="c"><button class="btn btn-pl-add" onclick="addPl(${p},${i})"><i class="icons btn-icon">&#xe18a;</i></button></td>
 	</tr>
 	<tr>
-		<td class="c">Duration</td>
-		<td class="c">Transition</td>
+		<td class="c">Длительность</td>
+		<td class="c">Переход</td>
 		<td class="c">#${i + 1}</td>
 	</tr>
 	<tr>
@@ -1888,7 +1888,7 @@ function makePlEntry(p, i) {
 
 function makePlUtil() {
     if (pNum < 2) {
-        showToast("You need at least 2 presets to make a playlist!"); //return;
+        showToast("Для создания плейлиста вам нужно как минимум 2 пресета!"); //return;
     }
     let p = gId('putil');
     p.classList.remove('staybot');
@@ -2065,7 +2065,7 @@ function setSeg(s) {
 
 function delSeg(s) {
     if (segCount < 2) {
-        showToast("You need to have multiple segments to delete one!");
+        showToast("У вас должно быть несколько сегментов, чтобы удалить один!");
         return;
     }
     segCount--;
@@ -2212,7 +2212,7 @@ function setPreset(i) {
         delete obj.n;  // no need for name
     }
     if (isPlaylist(i)) obj.on = true; // force on
-    showToast("Loading preset " + pName(i) + " (" + i + ")");
+    showToast("Загрузка пресета" + pName(i) + " (" + i + ")");
     requestJson(obj);
 }
 
@@ -2220,7 +2220,7 @@ function saveP(i, pl) {
     pI = parseInt(gId(`p${i}id`).value);
     if (!pI || pI < 1) pI = (i > 0) ? i : getLowestUnusedP();
     if (pI > 250) {
-        alert("Preset ID must be 250 or less.");
+        alert("ID пресета должен быть равен 250 или меньше.");
         return;
     }
     pN = gId(`p${i}txt`).value;
@@ -2233,13 +2233,13 @@ function saveP(i, pl) {
         } catch (e) {
             obj.win = raw;
             if (raw.length < 2) {
-                gId(`p${i}warn`).innerHTML = "&#9888; Please enter your API command first";
+                gId(`p${i}warn`).innerHTML = "&#9888; Сначала введите свою команду API";
                 return;
             } else if (raw.indexOf('{') > -1) {
-                gId(`p${i}warn`).innerHTML = "&#9888; Syntax error in custom JSON API command";
+                gId(`p${i}warn`).innerHTML = "&#9888; Синтаксическая ошибка в пользовательской команде JSON API";
                 return;
             } else if (raw.indexOf("Please") == 0) {
-                gId(`p${i}warn`).innerHTML = "&#9888; Please refresh the page before modifying this preset";
+                gId(`p${i}warn`).innerHTML = "&#9888; Обновите страницу прежде чем изменять этот пресет";
                 return;
             }
         }
@@ -2290,7 +2290,7 @@ function saveP(i, pl) {
         delete pJson[pI].v;
         delete pJson[pI].time;
     } else {
-        pJson[pI] = {"n": pN, "win": "Please refresh the page to see this newly saved command."};
+        pJson[pI] = {"n": pN, "win": "Обновите страницу чтобы увидеть эту недавно сохраненную команду."};
         if (obj.win) pJson[pI].win = obj.win;
         if (obj.ql) pJson[pI].ql = obj.ql;
     }

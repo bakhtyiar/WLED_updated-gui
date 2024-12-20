@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-	<title>Usermod Settings</title>
+	<title>Настройки пользовательского режима</title>
 	<script>
 	var d = document;
 	d.max_gpio = 50;
@@ -39,7 +39,7 @@
 		// error event
 		scE.addEventListener("error", (ev) => {
 			console.log("Error on loading file", ev);
-			alert("Loading of configuration script failed.\nIncomplete page data!");
+			alert("Ошибка загрузки настроек.\nНеполные данные страницы!");
 		});
 	}
 	function S() {
@@ -48,7 +48,7 @@
 			loc = true;
 			locip = localStorage.getItem('locIp');
 			if (!locip) {
-				locip = prompt("File Mode. Please enter WLED IP!");
+				locip = prompt("Режим файлов. Введите IP адрес для WLED!");
 				localStorage.setItem('locIp', locip);
 			}
 		} else {
@@ -62,7 +62,7 @@
 			}
 		}
 		ldS();
-		if (!numM) gId("um").innerHTML = "No Usermods installed.";
+		if (!numM) gId("um").innerHTML = "Нет установленного пользовательского режима.";
 		if (loc) d.Sf.action = getURL('/settings/um');
 	}
 	function getURL(path) {
@@ -298,7 +298,7 @@
 					addField(k,'unknown',o);
 				}
 			}
-			if (urows==="") urows = "Usermods configuration not found.<br>Press <i>Save</i> to initialize defaults.";
+			if (urows==="") urows = "Настройки пользовательского режима не найдены.<br>Нажмите <i>Сохранить</i> чтобы установить стандартные.";
 			gId("um").innerHTML = urows;
 			loadJS(getURL('/settings/s.js?p=8'), false);	// If we set async false, file is loaded and executed, then next statement is processed
 		})
@@ -319,25 +319,25 @@
 	<form id="form_s" name="Sf" method="post" onsubmit="svS(event)">
 		<div class="toprow">
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
-		<button type="button" onclick="B()">Back</button><button type="submit">Save</button><br>
-		<span id="lssuc" style="color:green; display:none">&#10004; Configuration saved!</span>
-		<span id="lserr" style="color:red; display:none">&#9888; Could not load configuration.</span><hr>
+		<button type="button" onclick="B()">Назад</button><button type="submit">Сохранить</button><br>
+		<span id="lssuc" style="color:green; display:none">&#10004; Настройки сохранены!</span>
+		<span id="lserr" style="color:red; display:none">&#9888; Не удается загрузить настройки.</span><hr>
 		</div>
-		<h2>Usermod Setup</h2>
-		Global I<sup>2</sup>C GPIOs (HW)<br>
-		<i class="warn">(change requires reboot!)</i><br>
+		<h2>Настройки пользовательского режима</h2>
+		Глобальные I<sup>2</sup>C GPIOs (HW)<br>
+		<i class="warn">(изменения требуют перезапуск!)</i><br>
 		SDA:<input type="number" min="-1" max="48" name="SDA" onchange="check(this,'if')" class="s" placeholder="SDA">
 		SCL:<input type="number" min="-1" max="48" name="SCL" onchange="check(this,'if')" class="s" placeholder="SCL">
 		<hr class="sml">
-		Global SPI GPIOs (HW)<br>
-		<i class="warn">(only changable on ESP32, change requires reboot!)</i><br>
+		Глобальные SPI GPIOs (HW)<br>
+		<i class="warn">(изменяется только на платформе ESP32, изменения требуют перезапуск!)</i><br>
 		MOSI:<input type="number" min="-1" max="48" name="MOSI" onchange="check(this,'if')" class="s" placeholder="MOSI">
 		MISO:<input type="number" min="-1" max="48" name="MISO" onchange="check(this,'if')" class="s" placeholder="MISO">
 		SCLK:<input type="number" min="-1" max="48" name="SCLK" onchange="check(this,'if')" class="s" placeholder="SCLK">
 		<hr class="sml">
-		Reboot after save? <input type="checkbox" name="RBT"><br>
-		<div id="um">Loading settings...</div>
-		<hr><button type="button" onclick="B()">Back</button><button type="submit">Save</button>
+		Перезапустить после сохранения? <input type="checkbox" name="RBT"><br>
+		<div id="um">Загрузка настроек...</div>
+		<hr><button type="button" onclick="B()">Назад</button><button type="submit">Сохранить</button>
 	</form>
 </body>
 

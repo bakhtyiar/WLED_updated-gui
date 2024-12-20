@@ -5,7 +5,7 @@ see https://github.com/me-no-dev/ESPAsyncWebServer -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>ESP8266 SPIFFS File Editor</title>
+<title>ESP8266 SPIFFS настройка файла</title>
 <meta name="author" content="Me-No-Dev" />
 <meta name="Description" content="ESP8266 SPIFFS File Web Editor"/>
 <link rel="shortcut icon" href="favicon.ico"/>
@@ -307,13 +307,13 @@ function createTree(element, editor){
     var action = ce("li");
     list.appendChild(action);
     if(isImageFile(path)){
-      action.innerHTML = "<span>Preview</span>";
+      action.innerHTML = "<span>Предосмотр</span>";
       action.onclick = function(e){
         loadPreview(path);
         if(document.body.getElementsByClassName('cm').length > 0) document.body.removeChild(el);
       };
     } else if(isTextFile(path)){
-      action.innerHTML = "<span>Edit</span>";
+      action.innerHTML = "<span>Настройка</span>";
       action.onclick = function(e){
         editor.loadUrl(path);
         if(document.body.getElementsByClassName('cm').length > 0) document.body.removeChild(el);
@@ -321,14 +321,14 @@ function createTree(element, editor){
     }
     var download = ce("li");
     list.appendChild(download);
-    download.innerHTML = "<span>Download</span>";
+    download.innerHTML = "<span>Скачать</span>";
     download.onclick = function(e){
       loadDownload(path);
       if(document.body.getElementsByClassName('cm').length > 0) document.body.removeChild(el);
     };
     var delFile = ce("li");
     list.appendChild(delFile);
-    delFile.innerHTML = "<span>Delete</span>";
+    delFile.innerHTML = "<span>Удалить</span>";
     delFile.onclick = function(e){
       httpDelete(path);
       if(document.body.getElementsByClassName('cm').length > 0) document.body.removeChild(el);
