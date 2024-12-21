@@ -224,14 +224,14 @@ function createFileUploader(element, tree, editor){
   path.defaultValue = "/";
   ge(element).appendChild(path);
   var button = ce("button");
-  button.innerHTML = 'Upload';
+  button.innerHTML = 'Загрузить';
   ge(element).appendChild(button);
   var mkfile = ce("button");
-  mkfile.innerHTML = 'Create';
+  mkfile.innerHTML = 'Создать';
   ge(element).appendChild(mkfile);
 
   var savefile = ce("button");
-  savefile.innerHTML = ' Save ' ;
+  savefile.innerHTML = ' Сохранить ' ;
   ge(element).appendChild(savefile);
 
   function httpPostProcessRequest(status, responseText){

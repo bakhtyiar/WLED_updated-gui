@@ -11,35 +11,35 @@
 	var sett = null;
 	var l = {
 		"comp":{
-			"labels":"Show button labels",
+			"labels":"Показать надписи кнопок",
 			"colors":{
-				"LABEL":"Color selection methods",
-				"picker": "Color Wheel",
-				"rgb": "RGB sliders",
-				"quick": "Quick color selectors",
-				"hex": "HEX color input"
+				"LABEL":"Методы выбора цвета",
+				"picker": "Колесо цвета",
+				"rgb": "RGB слайдеры",
+				"quick": "Быстрыые выбиратели цвета",
+				"hex": "HEX ввод цвета"
 				},
-			"pcmbot": "Show bottom tab bar in PC mode",
-			"pid": "Show preset IDs",
-			"seglen": "Set segment length instead of stop LED",
-			"segpwr": "Hide segment power &amp; brightness",
-			"segexp" : "Always expand first segment",
-			"css": "Enable custom CSS",
-			"hdays": "Enable custom Holidays list",
-			"fxdef": "Use effect default parameters",
-			"idsort": "Sort presets by ID"
+			"pcmbot": "Показать нижнюю панель в ПК режиме",
+			"pid": "Показать ID пресетов",
+			"seglen": "Указать длину вместо конца сегмента",
+			"segpwr": "Скрыть мощность &amp; яркость сегмента",
+			"segexp" : "Всегда расширять первый сегмент",
+			"css": "Вкл. польз. CSS",
+			"hdays": "Включить пользовательский список выходных",
+			"fxdef": "Исп. параметры по умолчанию",
+			"idsort": "Сортировать пресеты по ID"
 		},
 		"theme":{
 			"alpha": {
-				"bg":"Background opacity",
-				"tab":"Button opacity"
+				"bg":"Непрозрачность фона",
+				"tab":"Непрозрачность кнопки"
 			},
 			"bg":{
-				"url":"BG image URL",
-				"random":"Random BG image"
+				"url":"URL фона",
+				"random":"Случайный фон"
 			},
 			"color":{
-				"bg":"BG HEX color"
+				"bg":"Фоновый цвет HEX"
 			}
 		}
 	};
@@ -289,9 +289,9 @@
 		<span class="l">Случайный фон</span>: <input type="checkbox" id="theme_bg_random" class="agi cb" onchange="setRandomBg()"><br>
 		<input id="theme_base" class="agi" style="display:none">
 		<span class="l"></span>: <input type="checkbox" id="comp_css" class="agi cb"><br>
-		<div id="skin">Польз. CSS: <input type="file" name="data" accept=".css"> <input type="button" value="Upload" onclick="uploadFile(d.Sf.data,'/skin.css');"><br></div>
+		<div id="skin">Польз. CSS: <input type="file" name="data" accept=".css"> <input type="button" value="Загрузить" onclick="uploadFile(d.Sf.data,'/skin.css');"><br></div>
 		<span class="l"></span>: <input type="checkbox" id="comp_hdays" class="agi cb"><br>
-		<div id="holidays">Выходные: <input type="file" name="data2" accept=".json"> <input type="button" value="Upload" onclick="uploadFile(d.Sf.data2,'/holidays.json');"><br></div>
+		<div id="holidays">Выходные: <input type="file" name="data2" accept=".json"> <input type="button" value="Загрузить" onclick="uploadFile(d.Sf.data2,'/holidays.json');"><br></div>
 		<div id="toast"></div>
 		<hr><button type="button" onclick="cLS()">Очистить localStorage</button>
 		<hr><button type="button" onclick="B()">Назад</button><button type="button" onclick="Save()">Сохранить</button>

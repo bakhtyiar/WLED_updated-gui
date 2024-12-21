@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta content='width=device-width' name='viewport'>
-	<title>WLED Update</title>
+	<title>WLED обновление</title>
 	<script>
 		function B() { window.history.back(); }
 		function U() { document.getElementById("uf").style.display="none";document.getElementById("msg").style.display="block"; }
@@ -14,10 +14,10 @@
 </head>
 
 <body onload="GetV()">
-	<h2>WLED Software Update</h2>
+	<h2>WLED обновление приложения</h2>
 	<form method='POST' action='./update' id='uf' enctype='multipart/form-data' onsubmit="U()">
-		Installed version: <span class="sip">##VERSION##</span><br>
-		Download the latest binary: <a href="https://github.com/Aircoookie/WLED/releases" target="_blank">
+		Установленная версия: <span class="sip">##VERSION##</span><br>
+		Скачать последнюю (binary): <a href="https://github.com/Aircoookie/WLED/releases" target="_blank">
 		<img src="https://img.shields.io/github/release/Aircoookie/WLED.svg?style=flat-square"></a><br>
 		<input type='file' name='update' required><br> <!--should have accept='.bin', but it prevents file upload from android app-->
 		<button type="submit">Обновить!</button><br>

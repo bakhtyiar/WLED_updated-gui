@@ -310,48 +310,48 @@ Y:<input name="P${i}Y" type="number" min="0" max="255" value="0" oninput="UI()">
 		<button type="button" onclick="B()">Назад</button><button type="button" onclick="fS()">Сохранить</button><hr>
 	</div>
 	<h2>2D setup</h2>
-	Strip or panel:
+	Полоска или панель:
 	<select id="somp" name="SOMP" onchange="resetPanels();addPanels();UI();" >
-		<option value="0">1D Strip</option>
-		<option value="1">2D Matrix</option>
+		<option value="0">1D полоска</option>
+		<option value="1">2D матрица</option>
 	</select><br>
 	<div id="mpdiv" style="display:none;">
 		<hr class="sml">
-		<h3>Matrix Generator <button type="button" id="expGen" onclick="expand(this,gId('mxGen'));">&gt;</button></h3>
+		<h3>Генератор матрицы <button type="button" id="expGen" onclick="expand(this,gId('mxGen'));">&gt;</button></h3>
 		<div id="mxGen" style="display:none;">
-			Panel dimensions (WxH): <input name="PW" type="number" min="1" max="128" value="8"> x <input name="PH" type="number" min="1" max="128" value="8"><br>
-			Horizontal panels: <input name="MPH" type="number" min="1" max="8" value="1">
-			Vertical panels: <input name="MPV" type="number" min="1" max="8" value="1"><br>
+			Изменерия панели (Ширина на Высоту) (WxH): <input name="PW" type="number" min="1" max="128" value="8"> x <input name="PH" type="number" min="1" max="128" value="8"><br>
+			Горизонтальные панели: <input name="MPH" type="number" min="1" max="8" value="1">
+			Вертикальные панели: <input name="MPV" type="number" min="1" max="8" value="1"><br>
 			1<sup>st</sup> panel: <select name="PB">
-				<option value="0">Top</option>
-				<option value="1">Bottom</option>
+				<option value="0">Верх</option>
+				<option value="1">Низ</option>
 			</select><select name="PR">
-				<option value="0">Left</option>
-				<option value="1">Right</option>
+				<option value="0">Лево</option>
+				<option value="1">Право</option>
 			</select><br>
 			Orientation: <select name="PV">
-				<option value="0">Horizontal</option>
-				<option value="1">Vertical</option>
+				<option value="0">Горизонт.</option>
+				<option value="1">Вертикал.</option>
 			</select><br>
 			Serpentine: <input type="checkbox" name="PS"><br>
-			<i  class="warn">Pressing Populate will create LED panel layout with pre-arranged matrix.<br>Values above <i>will not</i> affect final layout.<br>
-				WARNING: You may need to update each panel parameters after they are generated.</i><br>
-			<button type="button" onclick="gen();expand(gId('expGen'),gId('mxGen'));">Populate</button>
+			<i  class="warn">Кнопка "Расправить" создаст LED панель с предрасположенным матриксом.<br>Значения выше <i>НЕ</i> повлияют на финальный результат.<br>
+				ВНИМАНИЕ: Возможно вам придется обновить параметры каждой панели псоле их генерации.</i><br>
+			<button type="button" onclick="gen();expand(gId('expGen'),gId('mxGen'));">Расправить</button>
 		</div>
 		<hr class="sml">
-		<h3>Panel set-up</h3>
-		Number of panels: <input name="MPC" type="number" min="1" max="64" value="1" oninput="addPanels();UI();"><br>
-		<i>A matrix is made of 1 or more physical LED panels.<br>
-		Each panel can be of different size and/or have different LED orientation and/or starting point and/or layout.</i><br>
-		<h3>LED panel layout</h3>
+		<h3>Настройка панели</h3>
+		Кол-во панелей: <input name="MPC" type="number" min="1" max="64" value="1" oninput="addPanels();UI();"><br>
+		<i>Матрица из 1 и более панелей.<br>
+		Каждая панель может быть разного размера и/или иметь разные LED ориентации и/или налальные точки и/или расположения.</i><br>
+		<h3>LED расположение панели</h3>
 		<div id="panels">
 		</div>
 		<hr class="sml">
 		<div id="MD"></div>
 		<canvas id="canvas"></canvas>
-		<div id="json" >Gap file: <input type="file" name="data" accept=".json"><button type="button" class="sml" onclick="uploadFile('/2d-gaps.json')">Upload</button></div>
-		<i>Note: Gap file is a <b>.json</b> file containing an array with number of elements equal to the matrix size.<br>
-			A value of -1 means that pixel at that position is missing, a value of 0 means never paint that pixel, and 1 means regular pixel.</i>
+		<div id="json" >Файл гэп, пропусков: <input type="file" name="data" accept=".json"><button type="button" class="sml" onclick="uploadFile('/2d-gaps.json')">Загрузить</button></div>
+		<i>Заметка: Файл пропусков <b>.json</b> файл, содержащий массив чисел элементов равный размеру матрицы.<br>
+			Значение -1 означает что пиксель в этой позиции отсутствует, значение 0 означает "никогда не красить этот пиксель", и 1 означает обычный пиксель.</i>
 	</div>
 	<hr>
 	<button type="button" onclick="B()">Назад</button><button type="button" onclick="fS()">Сохранить</button>
