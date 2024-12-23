@@ -34,10 +34,28 @@
 						},
 					],
 				});
+				cpick1 = new iro.ColorPicker("#picker1", {
+					width: 260,
+					wheelLightness: false,
+					wheelAngle: 270,
+					wheelDirection: "clockwise",
+					layout: [
+						{
+							component: iro.ui.Wheel,
+							options: {},
+						},
+					],
+				});
 				cpick.on("input:end", () => {
 					setColor(1);
 				});
 				cpick.on("color:change", () => {
+					updatePSliders();
+				});
+				cpick1.on("input:end", () => {
+					setColor(1);
+				});
+				cpick1.on("color:change", () => {
 					updatePSliders();
 				});
 				var l = document.createElement("script");
@@ -66,9 +84,7 @@
 	</head>
 	<body>
 		<div id="cv" class="overlay">Загрузка приложения...</div>
-		<noscript
-			><div class="overlay" style="opacity: 1">Требуется JavaScript!</div></noscript
-		>
+		<noscript><div class="overlay" style="opacity: 1">Требуется JavaScript!</div></noscript>
 		<div id="bg"></div>
 
 		<div class="wrapper" id="top">
@@ -623,7 +639,7 @@
 				<p id="ledmap" class="hide"></p>
 			</div> -->
 
-			<div id="Presets" class="tabcontent">
+			<div id="Presets" class="tabcontent segments">
 				<div id="pql"></div>
 				<p class="labels hd">Пресеты</p>
 				<div id="presetTabs" class="preset-modes-tabs">
@@ -662,14 +678,34 @@
 				</div>
 				<div id="putil" class="staybot"></div>
 			</div>
-			<div id="Contstructor" class="tabcontent">
-				<p class="labels" id="modeLabel">Сегменты</p>
+			<div id="Contstructor" class="tabcontent segments">
+				<div id="contstructorTabs" class="preset-modes-tabs">
+					<label class="preset-modes-tabs__tab preset-modes-tabs__tab--active">
+						<span class="check fchkl">
+							Сегменты
+							<input type="checkbox" name="segments" onchange="filterConstructor(this)" />
+						</span>
+					</label>
+					<label class="preset-modes-tabs__tab">
+						<span class="check fchkl">
+							Эффекты
+							<input type="checkbox" name="effects" onchange="filterConstructor(this)" />
+						</span>
+					</label>
+					<label class="preset-modes-tabs__tab">
+						<span class="check fchkl">
+							Цвет
+							<input type="checkbox" name="colors" onchange="filterConstructor(this)" />
+						</span>
+					</label>
+				</div>
+				<!-- <p class="labels" id="modeLabel">Сегменты</p> -->
 				<div id="segcont">Загрузка...</div>
 				<div id="segutil" class="staybot"></div>
 				<div id="segutil2">
 					<button class="btn btn-s" id="rsbtn" onclick="rSegs()">Сбросить сегменты</button>
 				</div>
-				<p>
+				<p id="segperehod">
 					Переход:
 					<input id="tt" type="number" min="0" max="65.5" step="0.1" value="0.7" />&nbsp;s
 				</p>
@@ -701,6 +737,8 @@
 						</div>
 					</div>
 				</div>
+				<div id="picker1" style="margin: auto" class="noslide"></div>
+
 				<div id="sliders">
 					<div id="filters" class="filter">
 						<label id="filterPal" class="check fchkl"
@@ -818,26 +856,30 @@
 						<output class="sliderbubble"></output>
 						<span class="tooltiptext" id="sliderLabel4">Польз. 3</span>
 					</div>
-					<button class="btn add-music-preset-button" onclick="makePUtil()">
-							<i class="icons btn-icon">&#xe18a;</i>Добавить пресет
-					</button>
+
 					<div id="fxopt" class="option fade">
 						<label id="opt0" class="check ochkl hide"
-							><i class="icons">&#xe2b3;</i><span class="tooltiptext" id="optLabel0">Галочка 1</span>
+							><i class="icons">&#xe2b3;</i
+							><span class="tooltiptext" id="optLabel0">Галочка 1</span>
 							<input id="checkO1" type="checkbox" onchange="setOption(1, this.checked)" />
 							<span class="checkmark"></span>
 						</label>
 						<label id="opt1" class="check ochkl hide"
-							><i class="icons">&#xe34b;</i><span class="tooltiptext" id="optLabel1">Галочка 2</span>
+							><i class="icons">&#xe34b;</i
+							><span class="tooltiptext" id="optLabel1">Галочка 2</span>
 							<input id="checkO2" type="checkbox" onchange="setOption(2, this.checked)" />
 							<span class="checkmark"></span>
 						</label>
 						<label id="opt2" class="check ochkl hide"
-							><i class="icons">&#xe04c;</i><span class="tooltiptext" id="optLabel2">Галочка 3</span>
+							><i class="icons">&#xe04c;</i
+							><span class="tooltiptext" id="optLabel2">Галочка 3</span>
 							<input id="checkO3" type="checkbox" onchange="setOption(3, this.checked)" />
 							<span class="checkmark"></span>
 						</label>
 					</div>
+					<button class="btn add-music-preset-button" onclick="makePUtil()">
+						<i class="icons btn-icon">&#xe18a;</i>Добавить пресет
+					</button>
 				</div>
 				<div id="prutil" class="staybot"></div>
 			</div>
@@ -891,8 +933,8 @@
 			</div>
 			<br />
 			<span class="h"
-				>Made with <span id="heart">&#10084;&#xFE0E;</span> by 
-				WLED community asd ColorBeat Develop</span
+				>Made with <span id="heart">&#10084;&#xFE0E;</span> by WLED community asd ColorBeat
+				Develop</span
 			>
 		</div>
 
@@ -920,7 +962,8 @@
 			<button class="btn" onclick="setLor(1)">Перезаписать один раз</button>
 			<button class="btn" onclick="setLor(2)">Перезаписать до перезапуска</button><br />
 			<span class="h"
-				>Чтобы повысить производительность, рекомендуется выключать потоковый источник если он не используется.</span
+				>Чтобы повысить производительность, рекомендуется выключать потоковый источник если он не
+				используется.</span
 			>
 		</div>
 

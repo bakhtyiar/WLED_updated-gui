@@ -24,8 +24,8 @@ var lastinfo = {};
 var isM = false, mw = 0, mh = 0;
 var ws, cpick, ranges, wsRpt = 0;
 var cfg = {
-    theme: {base: "dark", bg: {url: ""}, alpha: {bg: 0.6, tab: 0.8}, color: {bg: ""}}, comp: {
-        colors: {picker: true, rgb: false, quick: true, hex: false},
+    theme: { base: "dark", bg: { url: "" }, alpha: { bg: 0.6, tab: 0.8 }, color: { bg: "" } }, comp: {
+        colors: { picker: true, rgb: false, quick: true, hex: false },
         labels: true,
         pcmbot: false,
         pid: true,
@@ -39,9 +39,9 @@ var cfg = {
     }
 };
 var hol = [[0, 11, 24, 4, "https://aircoookie.github.io/xmas.png"], // christmas
-    [0, 2, 17, 1, "https://images.alphacoders.com/491/491123.jpg"], // st. Patrick's day
-    [2025, 3, 20, 2, "https://aircoookie.github.io/easter.png"], [2024, 2, 31, 2, "https://aircoookie.github.io/easter.png"], [0, 6, 4, 1, "https://images.alphacoders.com/516/516792.jpg"], // 4th of July
-    [0, 0, 1, 1, "https://images.alphacoders.com/119/1198800.jpg"] // new year
+[0, 2, 17, 1, "https://images.alphacoders.com/491/491123.jpg"], // st. Patrick's day
+[2025, 3, 20, 2, "https://aircoookie.github.io/easter.png"], [2024, 2, 31, 2, "https://aircoookie.github.io/easter.png"], [0, 6, 4, 1, "https://images.alphacoders.com/516/516792.jpg"], // 4th of July
+[0, 0, 1, 1, "https://images.alphacoders.com/119/1198800.jpg"] // new year
 ];
 
 function handleVisibilityChange() {
@@ -462,7 +462,7 @@ function loadPresets(callback = null) {
         method: 'get'
     })
         .then(res => {
-            if (res.status == "404") return {"0": {}};
+            if (res.status == "404") return { "0": {} };
             //if (!res.ok) showErrorToast();
             return res.json();
         })
@@ -635,14 +635,14 @@ function parseInfo(i) {
         gId("filter1D").classList.remove('hide');
         gId("filter2D").classList.remove('hide');
     }
-//	if (i.noaudio) {
-//		gId("filterVol").classList.add("hide");
-//		gId("filterFreq").classList.add("hide");
-//	}
-//	if (!i.u || !i.u.AudioReactive) {
-//		gId("filterVol").classList.add("hide"); hideModes(" ♪"); // hide volume reactive effects
-//		gId("filterFreq").classList.add("hide"); hideModes(" ♫"); // hide frequency reactive effects
-//	}
+    //	if (i.noaudio) {
+    //		gId("filterVol").classList.add("hide");
+    //		gId("filterFreq").classList.add("hide");
+    //	}
+    //	if (!i.u || !i.u.AudioReactive) {
+    //		gId("filterVol").classList.add("hide"); hideModes(" ♪"); // hide volume reactive effects
+    //		gId("filterFreq").classList.add("hide"); hideModes(" ♫"); // hide frequency reactive effects
+    //	}
 }
 
 //https://stackoverflow.com/questions/2592092/executing-script-elements-inserted-with-innerhtml
@@ -680,7 +680,7 @@ function populateInfo(i) {
     }
     var vcn = "Kuuhaku";
     if (i.ver.startsWith("0.14.")) vcn = "Hoshi";
-//	if (i.ver.includes("-bl")) vcn = "Supāku";
+    //	if (i.ver.includes("-bl")) vcn = "Supāku";
     if (i.cn) vcn = i.cn;
 
     cn += `v${i.ver} "${vcn}"<br><br><table>
@@ -1091,12 +1091,12 @@ function updatePA() {
         if (acv /*&& !acv.classList.contains('expanded')*/) {
             acv.classList.add('selected');
             /*
-			// scroll selected preset into view (on WS refresh)
-			acv.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center'
-			});
-			*/
+            // scroll selected preset into view (on WS refresh)
+            acv.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+            */
         }
         acv = gId(`p${currentPreset}qlb`);
         if (acv) acv.classList.add('selected');
@@ -1218,7 +1218,7 @@ function cmpP(a, b) {
     if ((c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123) || c > 255) x = '='; else x = '>';
     if ((d > 47 && d < 58) || (d > 64 && d < 91) || (d > 96 && d < 123) || d > 255) y = '='; else y = '>';
     const n = (a[1].playlist ? '<' : x) + a[1].n;
-    return n.localeCompare((b[1].playlist ? '<' : y) + b[1].n, undefined, {numeric: true});
+    return n.localeCompare((b[1].playlist ? '<' : y) + b[1].n, undefined, { numeric: true });
 }
 
 function makeWS() {
@@ -1567,11 +1567,11 @@ function requestJson(command = null) {
 
 function togglePower() {
     isOn = !isOn;
-    var obj = {"on": isOn};
+    var obj = { "on": isOn };
     if (isOn && lastinfo && lastinfo.live && lastinfo.liveseg >= 0) {
         obj.live = false;
         obj.seg = [];
-        obj.seg[0] = {"id": lastinfo.liveseg, "frz": false};
+        obj.seg[0] = { "id": lastinfo.liveseg, "frz": false };
     }
     requestJson(obj);
 }
@@ -1583,14 +1583,14 @@ function toggleNl() {
     } else {
         showToast('Таймер дезактивирован.');
     }
-    var obj = {"nl": {"on": nlA}};
+    var obj = { "nl": { "on": nlA } };
     requestJson(obj);
 }
 
 function toggleSync() {
     syncSend = !syncSend;
     if (syncSend) showToast('Другие источники света в сети теперь будут синхронизированы с этим источником.'); else showToast('Этот индикатор и другие индикаторы в сети больше не будут синхронизироваться.');
-    var obj = {"udpn": {"send": syncSend}};
+    var obj = { "udpn": { "send": syncSend } };
     if (syncTglRecv) obj.udpn.recv = syncSend;
     requestJson(obj);
 }
@@ -1934,14 +1934,14 @@ function tglSegn(s) {
 }
 
 function selSegAll(o) {
-    var obj = {"seg": []};
-    for (let i = 0; i <= lSeg; i++) if (gId(`seg${i}`)) obj.seg.push({"id": i, "sel": o.checked});
+    var obj = { "seg": [] };
+    for (let i = 0; i <= lSeg; i++) if (gId(`seg${i}`)) obj.seg.push({ "id": i, "sel": o.checked });
     requestJson(obj);
 }
 
 function selSegEx(s) {
-    var obj = {"seg": []};
-    for (let i = 0; i <= lSeg; i++) if (gId(`seg${i}`)) obj.seg.push({"id": i, "sel": (i == s)});
+    var obj = { "seg": [] };
+    for (let i = 0; i <= lSeg; i++) if (gId(`seg${i}`)) obj.seg.push({ "id": i, "sel": (i == s) });
     obj.mainseg = s;
     requestJson(obj);
 }
@@ -1952,7 +1952,7 @@ function getSelSeg(s) {
 
 function selSeg(s) {
     var sel = getSelSeg(s).checked;
-    var obj = {"seg": {"id": s, "sel": sel}};
+    var obj = { "seg": { "id": s, "sel": sel } };
     requestJson(obj);
 }
 
@@ -1960,11 +1960,11 @@ function selGrp(g) {
     event.preventDefault();
     event.stopPropagation();
     var sel = gId(`segcont`).querySelectorAll(`div[data-set="${g}"]`);
-    var obj = {"seg": []};
-    for (let i = 0; i <= lSeg; i++) if (gId(`seg${i}`)) obj.seg.push({"id": i, "sel": false});
+    var obj = { "seg": [] };
+    for (let i = 0; i <= lSeg; i++) if (gId(`seg${i}`)) obj.seg.push({ "id": i, "sel": false });
     if (sel) for (let s of sel || []) {
         let i = parseInt(s.id.substring(3));
-        obj.seg[i] = {"id": i, "sel": true};
+        obj.seg[i] = { "id": i, "sel": true };
     }
     if (obj.seg.length) requestJson(obj);
 }
@@ -2025,7 +2025,7 @@ function setSeg(s) {
         delSeg(s);
         return;
     }
-    var obj = {"seg": {"id": s, "n": name, "start": start, "stop": stop}};
+    var obj = { "seg": { "id": s, "n": name, "start": start, "stop": stop } };
     if (isM && start < mw * mh) {
         let sY = gId(`seg${s}sY`);
         let eY = gId(`seg${s}eY`);
@@ -2069,76 +2069,76 @@ function delSeg(s) {
         return;
     }
     segCount--;
-    var obj = {"seg": {"id": s, "stop": 0}};
+    var obj = { "seg": { "id": s, "stop": 0 } };
     requestJson(obj);
 }
 
 function setRev(s) {
     var rev = gId(`seg${s}rev`).checked;
-    var obj = {"seg": {"id": s, "rev": rev}};
+    var obj = { "seg": { "id": s, "rev": rev } };
     requestJson(obj);
 }
 
 function setRevY(s) {
     var rev = gId(`seg${s}rY`).checked;
-    var obj = {"seg": {"id": s, "rY": rev}};
+    var obj = { "seg": { "id": s, "rY": rev } };
     requestJson(obj);
 }
 
 function setMi(s) {
     var mi = gId(`seg${s}mi`).checked;
-    var obj = {"seg": {"id": s, "mi": mi}};
+    var obj = { "seg": { "id": s, "mi": mi } };
     requestJson(obj);
 }
 
 function setMiY(s) {
     var mi = gId(`seg${s}mY`).checked;
-    var obj = {"seg": {"id": s, "mY": mi}};
+    var obj = { "seg": { "id": s, "mY": mi } };
     requestJson(obj);
 }
 
 function setM12(s) {
     var value = gId(`seg${s}m12`).selectedIndex;
-    var obj = {"seg": {"id": s, "m12": value}};
+    var obj = { "seg": { "id": s, "m12": value } };
     requestJson(obj);
 }
 
 function setSi(s) {
     var value = gId(`seg${s}si`).selectedIndex;
-    var obj = {"seg": {"id": s, "si": value}};
+    var obj = { "seg": { "id": s, "si": value } };
     requestJson(obj);
 }
 
 function setTp(s) {
     var tp = gId(`seg${s}tp`).checked;
-    var obj = {"seg": {"id": s, "tp": tp}};
+    var obj = { "seg": { "id": s, "tp": tp } };
     requestJson(obj);
 }
 
 function setGrp(s, g) {
     event.preventDefault();
     event.stopPropagation();
-    var obj = {"seg": {"id": s, "set": g}};
+    var obj = { "seg": { "id": s, "set": g } };
     requestJson(obj);
 }
 
 function setSegPwr(s) {
     var pwr = gId(`seg${s}pwr`).classList.contains('act');
-    var obj = {"seg": {"id": s, "on": !pwr}};
+    var obj = { "seg": { "id": s, "on": !pwr } };
     requestJson(obj);
 }
 
 function setSegBri(s) {
-    var obj = {"seg": {"id": s, "bri": parseInt(gId(`seg${s}bri`).value)}};
+    var obj = { "seg": { "id": s, "bri": parseInt(gId(`seg${s}bri`).value) } };
     requestJson(obj);
 }
 
 function tglFreeze(s = null) {
-    var obj = {"seg": {"frz": "t"}}; // toggle
+    var obj = { "seg": { "frz": "t" } }; // toggle
     if (s !== null) {
         obj.seg.id = s;
         // if live segment, enter live override (which also unfreezes)
-        if (lastinfo && s == lastinfo.liveseg && lastinfo.live) obj = {"lor": 1};
+        if (lastinfo && s == lastinfo.liveseg && lastinfo.live) obj = { "lor": 1 };
     }
     requestJson(obj);
 }
@@ -2149,7 +2149,7 @@ function setFX(ind = null) {
     } else {
         d.querySelector(`#fxlist input[name="fx"][value="${ind}"]`).checked = true;
     }
-    var obj = {"seg": {"fx": parseInt(ind), "fxdef": cfg.comp.fxdef}}; // fxdef sets effect parameters to default values
+    var obj = { "seg": { "fx": parseInt(ind), "fxdef": cfg.comp.fxdef } }; // fxdef sets effect parameters to default values
     requestJson(obj);
 }
 
@@ -2160,28 +2160,28 @@ function setPalette(paletteId = null) {
         d.querySelector(`#pallist input[name="palette"][value="${paletteId}"]`).checked = true;
     }
 
-    var obj = {"seg": {"pal": paletteId}};
+    var obj = { "seg": { "pal": paletteId } };
     requestJson(obj);
 }
 
 function setBri() {
-    var obj = {"bri": parseInt(gId('sliderBri').value)};
+    var obj = { "bri": parseInt(gId('sliderBri').value) };
     requestJson(obj);
 }
 
 function setSpeed() {
-    var obj = {"seg": {"sx": parseInt(gId('sliderSpeed').value)}};
+    var obj = { "seg": { "sx": parseInt(gId('sliderSpeed').value) } };
     requestJson(obj);
 }
 
 function setIntensity() {
-    var obj = {"seg": {"ix": parseInt(gId('sliderIntensity').value)}};
+    var obj = { "seg": { "ix": parseInt(gId('sliderIntensity').value) } };
     requestJson(obj);
 }
 
 function setCustom(i = 1) {
     if (i < 1 || i > 3) return;
-    var obj = {"seg": {}};
+    var obj = { "seg": {} };
     var val = parseInt(gId(`sliderC${i}`).value);
     if (i === 3) obj.seg.c3 = val; else if (i === 2) obj.seg.c2 = val; else obj.seg.c1 = val;
     requestJson(obj);
@@ -2189,7 +2189,7 @@ function setCustom(i = 1) {
 
 function setOption(i = 1, v = false) {
     if (i < 1 || i > 3) return;
-    var obj = {"seg": {}};
+    var obj = { "seg": {} };
     if (i === 3) obj.seg.o3 = !(!v); //make sure it is bool
     else if (i === 2) obj.seg.o2 = !(!v); //make sure it is bool
     else obj.seg.o1 = !(!v); //make sure it is bool
@@ -2197,16 +2197,16 @@ function setOption(i = 1, v = false) {
 }
 
 function setLor(i) {
-    var obj = {"lor": i};
+    var obj = { "lor": i };
     requestJson(obj);
 }
 
 function setPreset(i) {
-    var obj = {"ps": i};
+    var obj = { "ps": i };
     if (!isPlaylist(i) && pJson && pJson[i] && (!pJson[i].win || pJson[i].win.indexOf("Please") <= 0)) {
         // we will send the complete preset content as to avoid delay introduced by
         // async nature of applyPreset() and having to read the preset from file system.
-        obj = {"pd": i}; // use "pd" instead of "ps" to indicate that we are sending the preset content directly
+        obj = { "pd": i }; // use "pd" instead of "ps" to indicate that we are sending the preset content directly
         Object.assign(obj, pJson[i]);
         delete obj.ql; // no need for quick load
         delete obj.n;  // no need for name
@@ -2290,7 +2290,7 @@ function saveP(i, pl) {
         delete pJson[pI].v;
         delete pJson[pI].time;
     } else {
-        pJson[pI] = {"n": pN, "win": "Обновите страницу чтобы увидеть эту недавно сохраненную команду."};
+        pJson[pI] = { "n": pN, "win": "Обновите страницу чтобы увидеть эту недавно сохраненную команду." };
         if (obj.win) pJson[pI].win = obj.win;
         if (obj.ql) pJson[pI].ql = obj.ql;
     }
@@ -2318,13 +2318,13 @@ function testPl(i, bt) {
 }
 
 function stopPl() {
-    requestJson({playlist: {}})
+    requestJson({ playlist: {} })
 }
 
 function delP(i) {
     var bt = gId(`p${i}del`);
     if (bt.dataset.cnf == 1) {
-        var obj = {"pdel": i};
+        var obj = { "pdel": i };
         requestJson(obj);
         delete pJson[i];
         populatePresets();
@@ -2354,7 +2354,7 @@ var lasth = 0;
 
 function pC(col) {
     if (col == "rnd") {
-        col = {h: 0, s: 0, v: 100};
+        col = { h: 0, s: 0, v: 100 };
         col.s = Math.floor((Math.random() * 50) + 50);
         do {
             col.h = Math.floor(Math.random() * 360);
@@ -2389,10 +2389,10 @@ function updatePSliders() {
     gId("sliderS").value = s;
     gId('sliderV').value = v;
 
-    c = iro.Color.hsvToRgb({"h": h, "s": 100, "v": 100});
+    c = iro.Color.hsvToRgb({ "h": h, "s": 100, "v": 100 });
     gId("sliderS").nextElementSibling.style.backgroundImage = 'linear-gradient(90deg, #aaa -15%, rgb(' + c.r + ',' + c.g + ',' + c.b + '))';
 
-    c = iro.Color.hsvToRgb({"h": h, "s": s, "v": 100});
+    c = iro.Color.hsvToRgb({ "h": h, "s": s, "v": 100 });
     gId('sliderV').nextElementSibling.style.backgroundImage = 'linear-gradient(90deg, #000 -15%, rgb(' + c.r + ',' + c.g + ',' + c.b + '))';
 
     // update Kelvin slider
@@ -2440,7 +2440,7 @@ function fromV() {
 }
 
 function fromK() {
-    cpick.color.set({kelvin: gId('sliderK').value});
+    cpick.color.set({ kelvin: gId('sliderK').value });
 }
 
 function fromRgb() {
@@ -2476,20 +2476,20 @@ function setColor(sr) {
     cdd.b = b = hasRGB ? col.b : w;
     cdd.w = w;
     setCSL(cd[csel]);
-    var obj = {"seg": {"col": [[], [], []]}};
+    var obj = { "seg": { "col": [[], [], []] } };
     obj.seg.col[csel] = [r, g, b, w];
     requestJson(obj);
 }
 
 function setBalance(b) {
-    var obj = {"seg": {"cct": parseInt(b)}};
+    var obj = { "seg": { "cct": parseInt(b) } };
     requestJson(obj);
 }
 
 function rmtTgl(ip, i) {
     event.preventDefault();
     event.stopPropagation();
-    fetch(`http://${ip}/win&T=2`, {method: 'get'})
+    fetch(`http://${ip}/win&T=2`, { method: 'get' })
         .then((r) => {
             return r.text();
         })
@@ -2545,13 +2545,13 @@ function rSegs() {
     cnfrS = false;
     bt.style.color = "var(--c-f)";
     bt.innerHTML = "Reset segments";
-    var obj = {"seg": [{"start": 0, "stop": ledCount, "sel": true}]};
+    var obj = { "seg": [{ "start": 0, "stop": ledCount, "sel": true }] };
     if (isM) {
         obj.seg[0].stop = mw;
         obj.seg[0].startX = 0;
         obj.seg[0].stopY = mh;
     }
-    for (let i = 1; i <= lSeg; i++) obj.seg.push({"stop": 0});
+    for (let i = 1; i <= lSeg; i++) obj.seg.push({ "stop": 0 });
     requestJson(obj);
 }
 
@@ -2605,13 +2605,13 @@ function getPalettesData(page, callback) {
 /*
 function hideModes(txt)
 {
-	for (let e of (gId('fxlist').querySelectorAll('.lstI')||[])) {
-		let iT = e.querySelector('.lstIname').innerText;
-		let f = false;
-		if (txt==="2D") f = iT.indexOf("\u25A6") >= 0 && iT.indexOf("\u22EE") < 0; // 2D && !1D
-		else f = iT.indexOf(txt) >= 0;
-		if (f) e.classList.add('hide'); //else e.classList.remove('hide');
-	}
+    for (let e of (gId('fxlist').querySelectorAll('.lstI')||[])) {
+        let iT = e.querySelector('.lstIname').innerText;
+        let f = false;
+        if (txt==="2D") f = iT.indexOf("\u25A6") >= 0 && iT.indexOf("\u22EE") < 0; // 2D && !1D
+        else f = iT.indexOf(txt) >= 0;
+        if (f) e.classList.add('hide'); //else e.classList.remove('hide');
+    }
 }
 */
 function search(f, l = null) {
@@ -2657,6 +2657,23 @@ function filterPreset(o) {
     i.focus();
     i.dispatchEvent(new Event('input'));
     gId("presetTabs").querySelectorAll("input[type=checkbox]").forEach((e) => {
+        if (e !== o) {
+            e.checked = false;
+            // debugger
+            e.closest(".preset-modes-tabs__tab").classList.remove("preset-modes-tabs__tab--active");
+        } else {
+            // debugger
+            e.closest(".preset-modes-tabs__tab").classList.add("preset-modes-tabs__tab--active");
+        }
+    });
+}
+
+function filterConstructor(o) {
+    if (!o) return;
+
+    gId("Contstructor").className = "tabcontent " + o.name
+
+    gId("contstructorTabs").querySelectorAll("input[type=checkbox]").forEach((e) => {
         if (e !== o) {
             e.checked = false;
             // debugger
@@ -2715,13 +2732,13 @@ function expand(i) {
                 if (isNaN(plJson[p].end)) plJson[p].end = 0;
                 gId('seg' + i).innerHTML = makeP(p, true);
                 const aEls = gEBCN("preset-kind-fieldset");
-                Array.from(aEls).forEach((item)=> {
+                Array.from(aEls).forEach((item) => {
                     item.style.display = "none";
                 });
                 refreshPlE(p);
             } else {
                 gId('seg' + i).innerHTML = makeP(p);
-                Array.from(gEBCN("preset-kind-fieldset")).forEach((item)=> {
+                Array.from(gEBCN("preset-kind-fieldset")).forEach((item) => {
                     item.style.display = "block";
                 });
             }
@@ -2831,10 +2848,10 @@ function mergeDeep(target, ...sources) {
     if (isObj(target) && isObj(source)) {
         for (const key in source) {
             if (isObj(source[key])) {
-                if (!target[key]) Object.assign(target, {[key]: {}});
+                if (!target[key]) Object.assign(target, { [key]: {} });
                 mergeDeep(target[key], source[key]);
             } else {
-                Object.assign(target, {[key]: source[key]});
+                Object.assign(target, { [key]: source[key] });
             }
         }
     }
