@@ -361,7 +361,7 @@ button {
 }
 
 .tabcontent.segments #fx,
-.tabcontent.segments #picker1 {
+.tabcontent.segments #color-palette {
 	display: none;
 }
 .tabcontent.effects #segcont,
@@ -370,7 +370,7 @@ button {
 .tabcontent.effects #ledmap,
 .tabcontent.effects #segperehod,
 .tabcontent.effects #sliders > div,
-.tabcontent.effects #picker1 {
+.tabcontent.effects #color-palette {
 	display: none !important;
 }
 
@@ -907,6 +907,7 @@ input[type="range"]::-moz-range-thumb {
 
 #picker,
 #picker1 {
+	margin: 0 auto;
 	margin-top: 8px !important;
 	max-width: 260px;
 }

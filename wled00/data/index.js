@@ -319,6 +319,16 @@ function updateTablinks(tabI) {
 }
 
 function openTab(tabI, force = false) {
+    if (tabI === 2) {
+        gId('color-palette').innerHTML = ''
+        gId('color-palette').append(gId('Colors-inner'))
+    }
+    else if (!force) {
+        gId('Colors').innerHTML = ""
+
+        gId('Colors').append(gId('Colors-inner'))
+    }
+
     if (pcMode && !force) return;
     iSlide = tabI;
     _C.classList.toggle('smooth', false);
@@ -2670,6 +2680,8 @@ function filterPreset(o) {
 
 function filterConstructor(o) {
     if (!o) return;
+
+
 
     gId("Contstructor").className = "tabcontent " + o.name
 
