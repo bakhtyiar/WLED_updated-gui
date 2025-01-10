@@ -318,12 +318,16 @@ function updateTablinks(tabI) {
     tablinks[tabI].classList.add('active');
 }
 
+let active = 0;
+
 function openTab(tabI, force = false) {
-    if (tabI === 2) {
+    if (tabI === 2 && active !== 2) {
+        active = 2
         gId('color-palette').innerHTML = ''
         gId('color-palette').append(gId('Colors-inner'))
     }
-    else if (!force) {
+    else if (!force && tabI === 0 && active !== 0) {
+        active = 0
         gId('Colors').innerHTML = ""
 
         gId('Colors').append(gId('Colors-inner'))
